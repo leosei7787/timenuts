@@ -6,14 +6,8 @@ threadsafe: true
 
 handlers:
 
-- url: /tv
-  static_dir: tv/static/
-
-- url: /mobile
-  static_dir: mobile/static/
-
-- url: /common
-  static_dir: common/static
+- url: /static
+  static_dir: static/
   
 - url: /.*
   script: Main.app
