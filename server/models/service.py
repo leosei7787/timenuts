@@ -31,8 +31,11 @@ class service(db.Model):
     return self.Skill.Category.get()
 
   def to_dict(self):
-      tempdict1 = dict([(p, unicode(getattr(self, p))) for p in self.properties()])
-      tempdict2 = {'key':unicode(self.key())}
-      tempdict1.update(tempdict2)
+      tempdict1 = {
+        'Id' : self.key(),
+        'Title' : getattr(self,Title),
+        'Description' : getattr(self,Description),
+        'Requester' : getattr(self,Requester)
+      }
       return tempdict1
 
