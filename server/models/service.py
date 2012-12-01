@@ -20,10 +20,5 @@ class service(db.Model):
   Feedback  = db.StringProperty()
   Responder = db.ReferenceProperty(user)
   Attachments = db.StringListProperty()
+  Comments = db.ListProperty(db.key)
 
-  def get_players(self):
-      Players =[]
-      for playerId in self.players:
-          p = PlayerManager.pull(playerId)
-          Players.append( p )
-      return Players
