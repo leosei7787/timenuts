@@ -8,7 +8,7 @@ from google.appengine.ext import db
 class skillstouser(db.Model):
   Skill = db.ReferenceProperty(skill,
                                required = True,
-                               collection_name = 'skill')
+                               collection_name = 'users_mapping')
   User = db.ReferenceProperty(user,
                               required = True,
-                              collection_name = 'user')
+                              collection_name = 'skills_mapping')
