@@ -19,7 +19,8 @@ class services(webapp.RequestHandler):
                 User = user.gql('WHERE Email=\''+Email+'\'').run(limit=1).next()
                 Skills = User.get_skills()
                 for s in Skills:
-                    self.response.out.write(s.Name)
+                    Services = s.service_set()
+                    self.response.out.write(Services.next().)
                 
                 self.response.out.write( "hello "+str(User.key().id()) )
             else:
@@ -76,11 +77,22 @@ class filltable (webapp.RequestHandler):
                     Awards = []
             )
             u.put()
-        #skill
-        s=skill(Name="Javascript")
-        s.put()
-        # skillstouser
-        stu = skillstouser(User=u.key(), Skill=s.key())
-        stu.put()
+        #Service
+        Service = service()
+        
+        #Category
+        for x in range(10):
+            category(Name = chr(ord('a') + 2*x)).put()
+        
+        # Category to skills
+        for x in range(10):
+            cts = category.all().next()
+            for x in range(10):
+                skill(Name = chr(ord('a') +1 +x), Category = cts).put()
+        
+        ss = skill.gql("LIMIT 3").run()
+        for s in ss:
+            skillstouser(User=u, Skill=s).put()
+            
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write("Done")
