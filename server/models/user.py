@@ -21,5 +21,5 @@ class user(db.Model):
   def get_skills(self):     # To the skill model
     """Generator to get the skills associated with the user"""
     from server.models.skillstouser import skillstouser
-    stu = skillstouser.gql("WHERE User = :1", self)
+    stu = skillstouser.gql("WHERE User = :1", self).run()
     return [x.Skill for x in stu]

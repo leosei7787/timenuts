@@ -2,7 +2,7 @@ var AppRouter = Backbone.Router.extend({
 
 	routes : {
 		'' : 'feed',
-		'!feed' : 'feed'
+		'!feed' : 'feed',
 		'!404' : 'show_404',
 		'!profile/me' : 'me',
 		'!profile/:id' : 'profile'
