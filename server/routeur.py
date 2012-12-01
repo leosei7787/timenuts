@@ -29,10 +29,9 @@ class services(webapp.RequestHandler):
                 for s in Skills:
                     LindedServices = s.linked_services.run()
                     for Service in LindedServices:
-                        self.response.out.write(s.Title+"<br/>")
                         Services.append(Service)
 
-                self.response.out.write( json.dumps(Services) )
+                self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
             else:
                 self.redirect(users.create_login_url(self.request.uri))
         else:
@@ -123,7 +122,7 @@ class filltable (webapp.RequestHandler):
                 Description = "SDMKSDF "+ str(x),
                 Requester =  u,
                 TimeNeeded = x,
-                Skill = S,
+                Skill = s,
                 Geoloc = True,
                 StartDate = datetime.datetime.now(),
                 EndDate = datetime.datetime.now()
@@ -131,3 +130,9 @@ class filltable (webapp.RequestHandler):
 
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.write("Done")
+
+class index (webapp.RequestHandler):
+    def get(self):  
+        path = os.path.join(os.path.split(__file__)[0], '..','static/index.html')
+        self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
+        self.response.out.write(open(path, 'r').read()) 

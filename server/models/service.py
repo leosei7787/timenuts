@@ -30,4 +30,9 @@ class service(db.Model):
     from server.models.skill import skill
     return self.Skill.Category.get()
 
+  def to_dict(self):
+      tempdict1 = dict([(p, unicode(getattr(self, p))) for p in self.properties()])
+      tempdict2 = {'key':unicode(self.key())}
+      tempdict1.update(tempdict2)
+      return tempdict1
 

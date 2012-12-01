@@ -2,7 +2,10 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from server.routeur import *
 
+
+
 app = webapp.WSGIApplication([
+                               ('/', index), 
                                ('/data/services', services), 
                                ('/login', login),
                                ('/logout', logout),
