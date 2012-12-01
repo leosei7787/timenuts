@@ -2,6 +2,7 @@
 service object
 """
 from server.models.user import user
+from server.models.skill import skill
 from google.appengine.ext import db
 import logging
 
@@ -12,7 +13,7 @@ class service(db.Model):
   Description = db.StringProperty()
   Requester =  db.ReferenceProperty(user)
   TimeNeeded = db.IntegerProperty()
-  Skill = db.ReferenceProperty()
+  Skill = db.ReferenceProperty(skill)
   Geoloc = db.BooleanProperty()
   StartDate = db.DateTimeProperty()
   EndDate = db.DateTimeProperty()
