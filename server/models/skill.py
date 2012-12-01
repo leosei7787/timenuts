@@ -7,5 +7,5 @@ class skill(db.Model):
   Name = db.StringProperty()
 
   def get_image_URL(self):
-    return '/static/images/skills/%s.png' % self.Name
+    return '/static/img/skills/%s.png' % self.Name
 

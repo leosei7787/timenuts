@@ -12,4 +12,3 @@ class skillstouser(db.Model):
   User = db.ReferenceProperty(user,
                               required = True,
                               collection_name = 'user')
-
