@@ -11,13 +11,13 @@ class user(db.Model):
   Headline = db.StringProperty()
   TimeCredit = db.IntegerProperty(required = True)
   Involvment = db.IntegerProperty(required = True)
-  Awards = db.ListProperty(db.key)    # To the award model
+  Awards = db.ListProperty(db.Key)    # To the award model
   
   def get_awards(self):
     from models.award import award
-    #Awards = []
-    for AwardId in self.Awards:
-      yield award.get_by_key_name(AwardId)
+    return award.get_by_id(self.Awards)
   
-  #def get_skills(self):     # To the skill model
+  def get_skills(self):     # To the skill model
+    from models.skillstouser import skillstouser
+    from models.skill import skill
     
