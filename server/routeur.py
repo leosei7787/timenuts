@@ -25,7 +25,7 @@ class newuser(webapp.RequestHandler):
                     ImageURL = 'http://google.fr',
                     Headline = 'Awesomness',
                     TimeCredit = random.randint(0,10),
-                    Involvment = random.randint(0,1000),
+                    Involvement = random.randint(0,1000),
                     Awards = []
                     )
             u.put()
