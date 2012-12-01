@@ -2,9 +2,12 @@
 /* GENERAL TAGS */
 
 body {
-	background: rgb(255, 128, 128);
+	background: rgb(255, 255, 128);
 }
 
+h2 {
+	font-family: 'Anaheim', sans-serif;
+}
 
 
 ul {
@@ -12,15 +15,19 @@ ul {
 	padding-left: 0px;
 }
 
+
+
 /* simpleProfileContainer */
+.container {
+	margin: 20px auto 0px auto;
+	position: relative;
+	border-radius: 5px; 
+	background: rgb(255, 255, 255);	
+}
 
 #simpleProfileContainer {
 	width: 900px;
 	height: 200px;
-	margin: auto;
-	position: relative;
-	border-radius: 5px; 
-	background: rgb(255, 255, 255);
 }
 
 #profilePic {
@@ -55,6 +62,11 @@ ul {
 	display: inline-block;
 }
 
+#profileText p#profileHeadLine {
+	font-size: 16px;
+	color: gray;
+}
+
 /* SCORES DISPLAY */
 
 #profileScoresContainer div {
@@ -68,20 +80,19 @@ ul {
 	padding: 12px;
 }
 
-.scoreDisplay h5, p, ul, li{
-	margin-top: 0px;
+.scoreDisplay h5, span, ul, li{
+	margin-top: 4px;
 	margin-left: 5px;
-	margin-right: 5px;
 	
 	font-family: 'Rambla', sans-serif;
 }
 
-.scoreDisplay p {
+.scoreDisplay span {
 	font-size: 20px;	
 }
 
-.scoreDisplay i {
-	font-size: 40px;
+#engagementScoreDisplay h5 {
+	display: inline;
 }
 
 .badgedisplay {
@@ -93,19 +104,37 @@ ul {
 }
 
 .arrow {
-	height: 35px;
-	position: relative;
-	right: 16px;
-}
-
-#engagementScoreDisplay h5, p{
-	display: inline-block;
-	vertical-align: middle;
+	height: 45px;
 }
 
 #badgesBoardDisplay  li{
 	display: inline-block;
 }
 
+/* servicesHistoryContainer */
+
+#skillsContainer {
+	width: 330px;
+	float: left;
+}
+
+#histories-container {
+	width: 550px;
+	float: right;
+}
+
+.history-container {
+	width:inherit;
+}
+
+h5.container-title {
+	margin-left: 20px;
+	text-shadow: 1px 1px 3px gray;
+}
+
+
+.service-info-small {
+	width: 60px;
+}
 
 
