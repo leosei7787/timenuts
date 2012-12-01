@@ -4,9 +4,7 @@ window.MenuView = Backbone.View.extend({
 	},
 	template : _.template($('#tpl-menu').html()),
 	render : function(eventName) {
-
 		$(this.el).html(this.template());
-
 		return this;
 	}
 });

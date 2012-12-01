@@ -8,6 +8,8 @@ var AppRouter = Backbone.Router.extend({
 		'!profile/:id' : 'profile'
 	},
 	initialize : function() {
+		this.menuView = new MenuView();
+		$('body').prepend(this.menuView.render().el);
 
 	},
 	show_404 : function() {
