@@ -3,12 +3,12 @@ from google.appengine.api import users
 from models.user import user
 from google.appengine.ext.webapp.util import run_wsgi_app
 import random
+import os
 
 class services(webapp.RequestHandler):
     def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write('Hello, webapp World!')
-        
+        path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
+        self.response.out.write(open(path, 'r').read())
         
 class newuser(webapp.RequestHandler):
     def get(self):
