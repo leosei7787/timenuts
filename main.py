@@ -1,9 +1,10 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
-from server.routeur import services
+from server.routeur import *
 
 app = webapp.WSGIApplication([
-                               ('/services', services)
+                               ('/services', services),
+                               ('/newuser', newuser),
                                ], debug=True)
 
  
