@@ -11,7 +11,7 @@ class user(db.Model):
   Headline = db.StringProperty()
   TimeCredit = db.IntegerProperty(required = True)
   Involvment = db.IntegerProperty(required = True)
-  Awards = db.ListProperty(db.key)    # To the award model
+  Awards = db.ListProperty(db.Key)    # To the award model
   
   def get_awards(self):
     from models.award import award
