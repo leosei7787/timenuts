@@ -14,12 +14,12 @@ class newuser(webapp.RequestHandler):
         #Email = users.get_current_user().nickname()
         #user.gql("SELECT * FROM user where Email= :Email",Email=Email)
         
-        user= user(  ForeName = "Leo"
-                    SureName = "Sei"
-                    Email = "sei7787@gmail.com"
-                    ImageURL = "http://google.fr"
-                    Headline = "Awesomness"
-                    TimeCredit = 1000
+        user= user(  ForeName = "Leo",
+                    SureName = "Sei",
+                    Email = "sei7787@gmail.com",
+                    ImageURL = "http://google.fr",
+                    Headline = "Awesomness",
+                    TimeCredit = 1000,
                     Involvment = 1000
                     )
         user.put()
