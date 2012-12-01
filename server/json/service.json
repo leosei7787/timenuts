@@ -4,10 +4,8 @@
     "EndDate": "05/01/2013", 
     "StartDate": "21/12/2012", 
     "Description": "I'm off of Paris for 15 days to travel. I am looking for someone willing to water my plants every two days as they need a lot of water", 
-    "Category": {
-        "Category": "house-care", 
-        "SubCategory": "gardening"
-    }, 
+    "Category": "house-care", 
+    "Skill": "gardening",
     "Title": "Plant watering during my holidays", 
     "Grade": "", 
     "TimeNeeded": "3", 
