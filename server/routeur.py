@@ -104,7 +104,7 @@ class filltable (webapp.RequestHandler):
                 Description = "SDMKSDF "+ chr(ord('a') + 2*x),
                 Requester =  u.key(),
                 TimeNeeded = Math.round(x / 2),
-                Skill = Skills.get( random.randin(0,len(Skill))).key(),
+                Skill = Skills.get( random.randint(0,len(Skill))).key(),
                 Geoloc = "True",
                 StartDate = datetime.datetime.now(),
                 EndDate = datetime.datetime(2013,03,30)
