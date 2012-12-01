@@ -1,0 +1,40 @@
+
+/* GENERAL TAGS */
+
+ul {
+	list-style: none;
+}
+
+/* simpleProfileContainer */
+
+#simpleProfileContainer div {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#profileScoresContainer div {
+	display: block;
+}
+
+/* PROFILE TEXT DISPLAY */
+
+#profileText p {
+	display: block;
+}
+
+/* SCORES DISPLAY */
+
+.scoreDisplay h3, p, ul, li{
+	display: inline-block;
+}
+
+.badge {
+	width: 40px;
+}
+
+#profileText #profileFullName h2 {
+	display: inline-block;
+}
+
+
+
