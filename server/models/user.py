@@ -10,10 +10,11 @@ class user(db.Model):
   ImageURL = db.LinkProperty()
   Headline = db.StringProperty()
   TimeCredit = db.IntegerProperty(required = True)
-  Involvment = db.IntegerProperty(required = True)
+  Involvement = db.IntegerProperty(required = True)
   Awards = db.ListProperty(db.Key)    # To the award model
   
   def get_awards(self):
+    """Get the list of proper awards objects"""
     from server.models.award import award
     return award.get_by_id(self.Awards)
   

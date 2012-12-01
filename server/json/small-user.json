@@ -1,8 +1,8 @@
 {
-    "id": "xxxxx", 
-    "fst-name": "Augustin", 
-    "name": "Riedinger", 
-    "avatar": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
-    "time": "3", 
-    "investment": "165"
+    "Id": 10,
+    "ForetName": "Augustin", 
+    "SureName": "Riedinger", 
+    "ImageURL": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+    "TimeCredit": 3,
+    "Involvement": 165,
 }

@@ -12,7 +12,7 @@ class service(db.Model):
   Description = db.StringProperty()
   Requester =  db.ReferenceProperty(user)
   TimeNeeded = db.IntegerProperty()
-  Category = db.ListProperty(db.key)    # List of skills
+  Skill = db.ReferenceProperty()
   Geoloc = db.BooleanProperty()
   StartDate = db.DateTimeProperty()
   EndDate = db.DateTimeProperty()
@@ -20,8 +20,13 @@ class service(db.Model):
   Feedback  = db.StringProperty()
   Responder = db.ReferenceProperty(user)
   Attachments = db.StringListProperty()
-  Comments = db.ListProperty(db.key)
+  Comments = db.ListProperty(db.Key)
 
-  def get_categories(self):
-    from models.skill import skill
-    return skill.get_by_id(self.Category)
+  #@property
+  #Category = 
+
+  def get_category(self):
+    from server.models.skill import skill
+    return self.Skill.Category.get()
+
+
