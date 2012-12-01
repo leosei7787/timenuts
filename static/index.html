@@ -23,9 +23,12 @@
 
 </head>
 <body>
+
+	<script type="text/template" id="tpl-menu">
 	<header>
-		<nav><div id="logo">Logo</div></nav>
+		<nav><div id="logo"><h3>Logo</h3></div></nav>
 	</header>
+	</script>
 	<section>
 		<div id="left-col">
 			<div id="small-me" class="block">
@@ -50,39 +53,67 @@
 			</div>
 			<div id="feed" class="block">
 				<table class="table table-striped service-list">
-					<tr>
-						<td class=" service">
-							<div class="service-block">
-								<div class="sub-service service-avatar">
-								<img src="" /> Adrian Gonzy 
-								</div class="sub-service service-content">
-								<div class="sub-service service-info">
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="service">
-							<div class="service-block">
-								<img src="" />
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="service">
-							<div class="service-block">
-								<img src="" />
-							</div>
-						</td>
-					</tr>
-				</table>
+					<thead>
+						<tr><ul id="filters">
+							<li>
+								Filters:
+							</li>
+							<li>
+								<button class="btn">Friends</button>
+							</li>
+							<li>
+								<button class="btn">Skills</button>
+							</li>
+							<li>
+								<button class="btn">Geolocation</button>
+							</li>
+							<li>
+								<button class="btn">Timing</button>
+							</li>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="service">
+								<div class="service-block">
+									<div class="sub-service service-avatar">
+										<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded" /> 
+									</div>
+									<div class="sub-service service-content">
+										<p class="service-title"><strong>Adrian Gonzy</strong>
+											Manual > Building</p>
+											<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
+										</div>
+										<div class="sub-service service-info">
+											<span>1</span>
+											<img src="img/1354379904_NeedleLeftYellow2.png"/>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="service">
+									<div class="service-block">
+										<img src="" />
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="service">
+									<div class="service-block">
+										<img src="" />
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-		
-	</section>
 
-	<script type="text/javascript" src="javascript/models.js"></script>
-	<script type="text/javascript" src="javascript/views.js"></script>
-	<script type="text/javascript" src="javascript/main.js"></script>
-</body>
-</html>
+		</section>
+
+		<script type="text/javascript" src="javascript/models.js"></script>
+		<script type="text/javascript" src="javascript/views.js"></script>
+		<script type="text/javascript" src="javascript/main.js"></script>
+	</body>
+	</html>

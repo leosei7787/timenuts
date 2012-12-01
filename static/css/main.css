@@ -1,17 +1,25 @@
 body {
 	background-color: #F7F7F9;
+	margin: 0;
+	padding: 0;
 }
 
 header {
 	background-color: black;
 	width: 100%;
 	height: 40px;
+	color: white;
 }
 
 section, nav {
 	width: 900px;
 	margin: 0 auto;
 	position: relative;
+}
+
+nav h3 {
+	padding: 0;
+	margin: 0;
 }
 
 section {
@@ -37,25 +45,42 @@ section {
 	padding: 5px;
 }
 
+#filtres ul, #filtres li {
+	display: inline-block;
+	list-style: none;
+	padding: 0 5px;
+}
+
 .service {
 	display: block;
 	height: 80px;
 	padding:5px;
 }
 
+
+.service-block {
+	height: inherit;
+}
+
+.service-block:hover {
+	background-color: #EDECE9;
+}
+
 .sub-service {
 	display: inline-block;
 	padding: 5px;
+	height: inherit;
+	vertical-align: middle;
 }
 
 .service-avatar {
-	width: 80px;
+	width: 64px;
 }
 
 .service-content {
-	width: 400px;
+	width: 300px;
 }
 
 .service-info {
-	width: 200px;
+	width: 160px;
 }
