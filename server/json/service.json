@@ -10,13 +10,16 @@
     "Grade": "", 
     "TimeNeeded": "3", 
     "Done": "false", 
-    "User": {
-        "FirstName": "Augustin", 
-        "SurName": "Riedinger", 
-        "Id": "hash", 
-        "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
-        "TimeCredit": "3", 
-        "Involvement": "165"
+    "Requester": {
+        "Type":"Small",
+        "User": {
+            "FirstName": "Augustin", 
+            "SurName": "Riedinger", 
+            "Id": "hash", 
+            "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+            "TimeCredit": "3", 
+            "Involvement": "165"
+        }
     }, 
     "Icons": {
       "Geoloc": "True",
