@@ -2,13 +2,17 @@
 
 <html>
 	<head>
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="css/DashBoardProfile.css" type="text/css" media="screen" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
+		
 	</head>
 	<body>
 		
 		<section id="simpleProfileContainer">
 		
-			<div id="profilePic" class="pic">
+			<div id="profilePic" class="pic img-rounded">
 				<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=128&d=identicon&r=PG" alt="This guy is awesome" />
 			</div>
 			
@@ -22,26 +26,27 @@
 			
 			<div id="profileScoresContainer">
 				<div id="timeCreditDisplay" class="scoreDisplay">
-					<h3 id="timeCreditLabel">TIME:</h3>
+<!-- 					<h5 id="timeCreditLabel">TIME:</h5> -->
+					<p><img src="img/clock.png" class="icon" /><p>
 					<p id="timeCredit"> +40H</p>
-					<p id="timeCreditExpression">YOUPIII!!</p> <!-- A voir si on le fait -->
+<!-- 					<p id="timeCreditExpression">YOUPIII!!</p> A voir si on le fait -->
 				</div>
 				<div id="engagementScoreDisplay" class="scoreDisplay">
-					<h3 id="engagementScoreLabel">ENGAGEMENT:</h3>
+					<h5 id="engagementScoreLabel">ENGAGEMENT:</h5>
 					<p id="engagementScore">503</p>
-					<p id="engagementScoreExpression">Great Activity DUDE !!</p>  <!-- A voir si on le fait -->
+					<p><img src="img/arrow_up.png" class="arrow"/></p>
+<!-- 					<p id="engagementScoreExpression">Great Activity DUDE !!</p>  A voir si on le fait -->
 				</div>
 				<div id="badgesBoardDisplay" class="scoreDisplay">
-					<h3 id="badgesBoardLabel">BADGES:</h3>
 					<ul id="badgesBoardList">
 						<li id="badgeContainer">
-							<img src="img/badge2.jpeg" class="badge" />
+							<img src="img/badge4.png" class="badgedisplay" />
 						</li>
 						<li id="badgeContainer">
-							<img src="img/badge.jpeg" class="badge" />
+							<img src="img/badge5.png" class="badgedisplay" />
 						</li>
 						<li id="badgeContainer">
-							<img src="img/badge3.jpeg" class="badge" />
+							<img src="img/badge6.png" class="badgedisplay" />
 						</li>
 					</ul>
 				</div>
