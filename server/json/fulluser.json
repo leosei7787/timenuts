@@ -1,0 +1,11 @@
+{
+    "Id": 10,
+    "ForeName": "Augustin", 
+    "SureName": "Riedinger", 
+    "ImageURL": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+    "TimeCredit": 3,
+    "Involvement": 165,
+	"Email": "augustin.riedinger@gmail.com",
+	"Headline": "Hacking your ass",
+	"Awards": ["Big Hacker", "Shelf builder"],
+}
