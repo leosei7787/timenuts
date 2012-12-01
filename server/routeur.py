@@ -10,6 +10,7 @@ import datetime
 import random
 import os
 import logging
+import json
 from google.appengine.ext import db
 
 
@@ -24,12 +25,14 @@ class services(webapp.RequestHandler):
                 Email = self.request.get("usermail") 
                 User = user.gql('WHERE Email=\''+Email+'\'').run(limit=1).next()
                 Skills = User.get_skills()
+                Services = []
                 for s in Skills:
-                    self.response.out.write(s.Name+"<br/>")
-                    Services = s.linked_services().run()
-                    self.response.out.write(Services.next().Title)
-                
-                self.response.out.write( "hello "+str(User.key().id()) )
+                    LindedServices = s.linked_services.run()
+                    for Service in LindedServices:
+                        self.response.out.write(s.Title+"<br/>")
+                        Services.append(Service)
+
+                self.response.out.write( json.dumps(Services) )
             else:
                 self.redirect(users.create_login_url(self.request.uri))
         else:
