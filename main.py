@@ -5,6 +5,8 @@ from server.routeur import *
 app = webapp.WSGIApplication([
                                ('/services', services),
                                ('/newuser', newuser),
+                               ('/login', login),
+                               ('/logout', logout)
                                ], debug=True)
 
  
