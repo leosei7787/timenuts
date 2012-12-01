@@ -45,7 +45,7 @@ section {
 	padding: 5px;
 }
 
-#filtres ul, #filtres li {
+#filters ul, #filters li {
 	display: inline-block;
 	list-style: none;
 	padding: 0 5px;
