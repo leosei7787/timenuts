@@ -3,7 +3,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from server.routeur import services
 
 app = webapp.WSGIApplication([
-                               ('/', services)
+                               ('/services', services)
                                ], debug=True)
 
 
