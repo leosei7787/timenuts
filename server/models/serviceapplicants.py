@@ -6,10 +6,10 @@ from models.user import user
 from google.appengine.ext import db
 
 class serviceapplicants(db.Model):
-    service = db.ReferenceProperty(service,
+    Service = db.ReferenceProperty(service,
                                    required=True,
                                    collection_name='user')
-    applicant = db.ReferenceProperty(user,
+    Applicant = db.ReferenceProperty(user,
                                    required=True,
                                    collection_name='service')
     Date = db.DateTimeProperty()
