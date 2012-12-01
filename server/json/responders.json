@@ -1,0 +1,34 @@
+{
+    "responding-users": [
+        {
+            "user": {
+                "fst-name": "Augustin", 
+                "name": "Riedinger", 
+                "id": "hash", 
+                "avatar": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+                "time": "3", 
+                "investment": "165"
+            }
+        }, 
+        {
+            "user": {
+                "fst-name": "Augustin", 
+                "name": "Riedinger", 
+                "id": "hash", 
+                "avatar": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+                "time": "3", 
+                "investment": "165"
+            }
+        }, 
+        {
+            "user": {
+                "fst-name": "Augustin", 
+                "name": "Riedinger", 
+                "id": "hash", 
+                "avatar": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+                "time": "3", 
+                "investment": "165"
+            }
+        }
+    ]
+}
