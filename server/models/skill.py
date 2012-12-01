@@ -8,4 +8,3 @@ class skill(db.Model):
 
   def get_image_URL(self):
     return '/static/img/skills/%s.png' % self.Name
-

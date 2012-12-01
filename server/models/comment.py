@@ -1,8 +1,8 @@
 """
 comment object
 """
-from models.service import service
-from models.user import user
+from server.models.service import service
+from server.models.user import user
 from google.appengine.ext import db
 import logging
 

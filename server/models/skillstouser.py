@@ -1,8 +1,8 @@
 """
 skill to user mapping object
 """
-from models.user import user
-from models.skill import skill
+from server.models.user import user
+from server.models.skill import skill
 from google.appengine.ext import db
 
 class skillstouser(db.Model):

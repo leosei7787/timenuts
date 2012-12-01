@@ -18,6 +18,8 @@ class user(db.Model):
     return award.get_by_id(self.Awards)
   
   def get_skills(self):     # To the skill model
+    """Generator to get the skills associated with the user"""
     from models.skillstouser import skillstouser
-    from models.skill import skill
-    
+    stu = skillstouser.gql("WHERE User = :1", self)
+    for x in stu:
+      yield x.Skill

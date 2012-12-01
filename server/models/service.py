@@ -1,7 +1,7 @@
 """
 service object
 """
-from models.user import user
+from server.models.user import user
 from google.appengine.ext import db
 import logging
 
@@ -24,5 +24,4 @@ class service(db.Model):
 
   def get_categories(self):
     from models.skill import skill
-    for skillId in self.Category:
-        yield skill.get_by_key_name(skillId)
+    return skill.get_by_id(self.Category)
