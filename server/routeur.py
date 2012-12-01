@@ -4,10 +4,15 @@ from server.models.user import user
 from server.models.skill import skill
 from server.models.skillstouser import skillstouser
 from server.models.service import service
+from server.models.category import category
 from google.appengine.ext.webapp.util import run_wsgi_app
 import datetime
 import random
 import os
+import logging
+import json
+from google.appengine.ext import db
+
 
 class services(webapp.RequestHandler):
     def get(self):
@@ -20,11 +25,14 @@ class services(webapp.RequestHandler):
                 Email = self.request.get("usermail") 
                 User = user.gql('WHERE Email=\''+Email+'\'').run(limit=1).next()
                 Skills = User.get_skills()
+                Services = []
                 for s in Skills:
-                    Services = s.service_set()
-                    self.response.out.write(Services.next().Title)
-                
-                self.response.out.write( "hello "+str(User.key().id()) )
+                    LindedServices = s.linked_services.run()
+                    for Service in LindedServices:
+                        self.response.out.write(s.Title+"<br/>")
+                        Services.append(Service)
+
+                self.response.out.write( json.dumps(Services) )
             else:
                 self.redirect(users.create_login_url(self.request.uri))
         else:
@@ -43,7 +51,7 @@ class login(webapp.RequestHandler):
                     ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
                     Headline = 'Awesomness',
                     TimeCredit = random.randint(0,10),
-                    Involvment = random.randint(0,1000),
+                    Involvement = random.randint(0,1000),
                     Awards = []
                     )
                 u.put()
@@ -61,24 +69,36 @@ class logout(webapp.RequestHandler):
 
 class filltable (webapp.RequestHandler):
     def get(self):
+        query = user.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)
+        query = category.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)
+        query = service.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)
+        query = skill.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)        
+        query = skillstouser.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)
+        query = skillstouser.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)
+
         # User
-        Names = ['Pierre','Paul','Thomas','Francois','Steve','Vincent','Etienne','Larry']
-        SurNames = ['A','B','C','D','E','F','G']
-        Name = Names[ random.randint(0,len(Names)) ]
-        SurName = SurNames[ random.randint(0,len(SurNames)) ]
-        Email = Name+'.'+SurName+'@gmail.com'
-        q = user.gql('WHERE Email=\''+Email+'\'')
-        if q.count() == 0:
-            u= user(ForeName = Name,
-                    SureName = SurName,
-                    Email = Email,
+        u= user(ForeName = "Jean",
+                    SureName = "Test",
+                    Email = "test@gmail.com",
                     ImageURL = 'http://google.fr',
                     Headline = 'Awesomness',
                     TimeCredit = random.randint(0,10),
-                    Involvment = random.randint(0,1000),
+                    Involvement = random.randint(0,1000),
                     Awards = []
-            )
-            u.put()
+        )
+        u.put()
                 
         #Category
         for x in range(10):
@@ -86,29 +106,28 @@ class filltable (webapp.RequestHandler):
         
         # Category to skills
         for x in range(10):
-            cts = category.all().next()
+            cts = category.all().run().next()
             for x in range(10):
-                skill(Name = chr(ord('a') +1 +x), Category = cts).put()
+                S = skill(Name = chr(ord('a') +1 +x), Category = cts)
+                S.put()
         
         # Skills
         ss = skill.gql("LIMIT 3").run()
-        Skills = []
         for s in ss:
-            Skills.append(s)
             skillstouser(User=u, Skill=s).put()
         
         #Service
         for x in range(20):
             service(
-                Title =  chr(ord('a') + 2*x),
-                Description = "SDMKSDF "+ chr(ord('a') + 2*x),
-                Requester =  u.key(),
-                TimeNeeded = Math.round(x / 2),
-                Skill = Skills.get( random.randint(0,len(Skill))).key(),
-                Geoloc = "True",
+                Title =  "TItTRE"+str(x),
+                Description = "SDMKSDF "+ str(x),
+                Requester =  u,
+                TimeNeeded = x,
+                Skill = S,
+                Geoloc = True,
                 StartDate = datetime.datetime.now(),
-                EndDate = datetime.datetime(2013,03,30)
-            ).put()
+                EndDate = datetime.datetime.now()
+                ).put()
 
-        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.write("Done")
