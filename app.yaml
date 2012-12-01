@@ -10,7 +10,7 @@ handlers:
   static_dir: static/
   
 - url: /.*
-  script: Main.app
+  script: main.app
 
 
 libraries :
