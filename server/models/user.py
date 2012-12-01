@@ -23,3 +23,25 @@ class user(db.Model):
     from server.models.skillstouser import skillstouser
     stu = skillstouser.gql("WHERE User = :1", self).run()
     return [x.Skill for x in stu]
+
+  def to_small_dict(self):
+    """Returns a dict of minimum info about the user"""
+    CHOICES = ('ForeName', 'SureName', 'ImageURL', 'TimeCredit', 'Involvement',)
+    return dict(
+      {'Id': self.key().id()},
+      **dict(
+        [(
+          k,
+          v.get_value_for_datastore(self)
+          ) for (k, v) in self.properties().items() if k in CHOICES]
+      )
+    )
+
+  def to_big_dict(self):
+    """Returns a dict of all info about the user and related objects"""
+    d = self.to_small_dict()
+    d['Email'] = self.Email
+    d['Headline'] = self.Headline
+    from server.models.award import award
+    d.Awards = [award.get_by_id(x.id()).Name for x in self.Awards]
+    return d
