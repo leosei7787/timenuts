@@ -5,6 +5,7 @@ from server.models.skill import skill
 from server.models.skillstouser import skillstouser
 from server.models.service import service
 from server.models.category import category
+from server.models.serviceapplicants import serviceapplicants
 from google.appengine.ext.webapp.util import run_wsgi_app
 import datetime
 import random
@@ -21,11 +22,11 @@ def get_db_user(request, login):
     e = login.email()
     return user.gql("WHERE Email='%s'" % e).run(limit=1).next()
 
-def render_static_user_jsons(handler, t):
-    if t == "small": j = 'smalluser.json'
-    elif t == "full": j = 'fulluser.json'
-    path = os.path.join(os.path.split(__file__)[0], 'json/'+j)
-    handler.response.out.write(open(path, 'r').read())
+#def render_static_user_jsons(handler, t):
+#    if t == "small": j = 'smalluser.json'
+#    elif t == "full": j = 'fulluser.json'
+#    path = os.path.join(os.path.split(__file__)[0], 'json/'+j)
+#    handler.response.out.write(open(path, 'r').read())
 
 # Views
 
@@ -61,19 +62,17 @@ class myuserview(webapp.RequestHandler):
         if t not in ['small', 'full']:
             self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
             return
-        if self.request.get("debug") != "True":
-            Login = users.get_current_user()
-            if Login:
-                u = get_db_user(self.request, Login)
-                # GET parameter
-                if t == "small":
-                    self.response.out.write(json.dumps(u.to_small_dict()))
-                elif t == "full":
-                    self.response.out.write(json.dumps(u.to_big_dict()))
-            else:
-                self.redirect(users.create_login_url(self.request.uri))
-        else: # Things are working
-            render_static_user_jsons(self, t)
+        self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+        Login = users.get_current_user()
+        if Login:
+            u = get_db_user(self.request, Login)
+            # GET parameter
+            if t == "small":
+                self.response.out.write(json.dumps(u.to_small_dict()))
+            elif t == "full":
+                self.response.out.write(json.dumps(u.to_big_dict()))
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
 
 class userview(webapp.RequestHandler):
     """View rendering some user jsons"""
@@ -87,15 +86,29 @@ class userview(webapp.RequestHandler):
         except ValueError:  # If int() not working
             self.response.out.write("Error: GET parameter Id must be an integer")
             return
-        if self.request.get("debug") == "True":
-            u = user.get_by_id(Id)
-            if t == "small":
-                d = u.to_small_dict()
-            else:
-                d = u.to_big_dict()
-            self.resposne.out.write(d)
+        self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+        u = user.get_by_id(Id)
+        if t == "small":
+            d = u.to_small_dict()
         else:
-            render_static_user_jsons(self, t)
+            d = u.to_big_dict()
+        self.resposne.out.write(d)
+
+class myapplying(webapp.RequestHandler):
+  def get(self):
+      # get current user
+      Login = users.get_current_user()
+      self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+      if Login:
+        u = get_db_user(self.request, Login)
+        servapps = serviceapplicants.gql("WHERE Applicant = :1", u)
+        ApplicantsDict = [servapp.Applicant.to_dict() for servapp in servapps]
+        self.response.out.write(json.dumps(ApplicantsDict))
+      else:
+        self.redirect(users.create_login_url(self.request.uri))
+
+class donservices(webapp.RequestHandler):
+    pass
         
 class login(webapp.RequestHandler):
     def get(self):

@@ -9,6 +9,9 @@ app = webapp.WSGIApplication([
                                ('/data/services', services), 
                                ('/data/me', myuserview),
                                ('/data/user', userview),
+                               ('/data/applying', myapplying),
+                               ('/data/requests', myrequests),
+                               ('/data/doneservices', mydoneservices),
                                ('/login', login),
                                ('/logout', logout),
                                ('/filltable',filltable)
