@@ -63,8 +63,8 @@
 
 
 	<script type="text/template" id="tpl-small-me">
-		<img src="<%=ImageURL %>?s=64" class="img-rounded"/>
-		<span><%= ForeName %> <%= SureName %>
+		<img src="<%=Image %>?s=64" class="img-rounded"/>
+		<span><%= FirstName %> <%= LastName %>
 		</span>
 		<div id="scores">
 			<ul>
@@ -108,13 +108,13 @@
 			<div class="block profile-block">
 		
 				<div id="profilePic" class="pic img-rounded">
-					<img src="<%=ImageURL %>?s=128" />
+					<img src="<%=Image %>?s=128" />
 				</div>
 				
 				<div id="profileText">
 					<div id="profileFullName">
-						<h2 id="profileFirstName"><%= ForeName %></h2>
-						<h2 id="profileSurname"><%= SureName%></h2>
+						<h2 id="profileFirstName"><%= FirstName %></h2>
+						<h2 id="profileSurname"><%= LastName%></h2>
 					</div>
 					<p id="profileHeadLine">Hackathons rock !</p>
 				</div>
