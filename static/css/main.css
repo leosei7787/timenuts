@@ -89,6 +89,7 @@ section {
 	display: block;
 	height: 80px;
 	padding:5px;
+	position: relative;
 }
 
 .name {
@@ -123,4 +124,10 @@ section {
 	width: 110px;
 	text-align: right;
 	float: right;
+}
+
+.apply {
+	position: absolute;
+top: 12px;
+right: 95;
 }

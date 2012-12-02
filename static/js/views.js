@@ -31,6 +31,9 @@ window.LoadingView = Backbone.View.extend({
 window.ServiceView = Backbone.View.extend({
 	className : 'service-block',
 	template : _.template($('#tpl-service').html()),
+	events : {
+		'click .apply' : 'apply'
+	},
 	initialize : function() {
 	},
 	render : function(eventName) {
@@ -40,7 +43,18 @@ window.ServiceView = Backbone.View.extend({
 			$(this.el).html(new LoadingView.render().el);
 		}
 		return this;
-	}
+	},
+	apply : function(event){
+		var _url = '/data/apply?ServiceId='+event.currentTarget.id.replace(/apply-/g, '')
+		$.ajax({
+			url: _url,
+			type: 'POST'
+		});
+
+		$('#'+event.currentTarget.id).attr('disabled','disabled');
+		$('#'+event.currentTarget.id).addClass('btn-success');
+
+}
 });
 
 window.ServicesView = Backbone.View.extend({
@@ -57,14 +71,14 @@ window.ServicesView = Backbone.View.extend({
 				$(this.el).find('#service-'+index).append(new ServiceView({
 					model : service
 				}).render().el);
-			},this);
-		} else {
-			$(this.el).html('<tr><td class="service"></td></tr>');
-			$(this.el).find('.service').html(new LoadingView({}).render().el);
-			
-		}
-		return this;
-	}
+},this);
+} else {
+	$(this.el).html('<tr><td class="service"></td></tr>');
+	$(this.el).find('.service').html(new LoadingView({}).render().el);
+
+}
+return this;
+}
 });
 
 window.MeSmallView = Backbone.View.extend({

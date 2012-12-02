@@ -89,6 +89,7 @@
 			<p class="service-title"><a href="#!profile/<%= Requester.User.Id %>"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong></a>
 				<%=Category %> > <%=Skill %></p>
 				<small class="service-chapeau"><%= Title %></small>
+				<button class="btn apply btn-mini" id="<% print('apply-'+Id) %>">Apply</button>
 			</div>
 			<div class="sub-service service-info">
 				<div class="service-date"><%= ModifiedTime.replace(/[0-9]{2}:[0-9]{2}:[0-9]{2}/g,'') %></div>
