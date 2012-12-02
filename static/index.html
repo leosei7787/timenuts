@@ -31,9 +31,9 @@
 		<div id="left-col">
 		</div>
 		<div id="right-col">
-			<div id="create" class="block">
-				<button id="button-create" class="btn btn-success btn-block">Make a Request</button>
-			</div>
+		<div class="block-like">
+				<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
+				</div>
 			<div id="feed" class="block">
 				<table class="table table-striped service-list" id="feed-table">
 					<thead>
@@ -63,16 +63,14 @@
 
 	<script type="text/template" id="tpl-small-me">
 		<img src="<%=Image %>?s=64" class="img-rounded"/>
-		<a href="#!profile/me"><span class="name"><%= FirstName %> <%= LastName %></span></a>
 		<div id="scores">
-			<ul>
-				<li>
-					<label>Credit: </label><span><%=TimeCredit %> hours</span> 
-				</li>
-				<li>
-					<label>Involvment: </label><span><%=Involvement %></span>
-				</li>
-			</ul>
+		<a href="#!profile/me"><h3 class="name"><%= FirstName %> <%= LastName %></h3></a>
+			<div id="timeCreditDisplay" class="scoreDisplay">
+				<span><img src="img/clock.png" class="icon" /><span>
+				<span id="timeCredit"><%=TimeCredit %></span>
+				<span><img src="img/engagement2hd.png" class="icon"/></span>
+				<span id="engagementScore"><%=Involvement %></span>
+			</div>
 		</div>
 	</script>
 

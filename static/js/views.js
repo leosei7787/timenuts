@@ -53,7 +53,6 @@ window.ServicesView = Backbone.View.extend({
 		$(this.el).empty();
 		if (this.collection.length) {
 			_.each(this.collection.models,function(service,index) {
-				console.log('no'+index);
 				$(this.el).append('<tr><td class="service" id="service-'+index+'"></td></tr>');
 				$(this.el).find('#service-'+index).append(new ServiceView({
 					model : service

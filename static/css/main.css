@@ -40,9 +40,20 @@ section {
 	float: left;
 }
 
+#scores {
+	display: inline-block;
+	text-align: right;
+	vertical-align: middle;
+	width: 200px;
+}
+
 #right-col {
 	width: 600px;
 	float: right;
+}
+
+.block-like {
+	margin: 5px;
 }
 
 .block {
