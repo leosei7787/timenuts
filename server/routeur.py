@@ -32,28 +32,27 @@ def get_db_user(request):
 # Views
 
 class services(webapp.RequestHandler):
-    def get(self):
-        if self.request.get("debug") == "True":
-            # get current user
-            Login = users.get_current_user()
-            if Login:
-                # get all skills of that user
-                #Email = Login.email()
-                Email = self.request.get("usermail") 
-                User = user.gql('WHERE Email=\''+Email+'\'').run(limit=1).next()
-                Skills = User.get_skills()
-                Services = []
-                for s in Skills:
-                    LindedServices = s.linked_services.run()
-                    for Service in LindedServices:
-                        Services.append(Service)
-
-                self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
-            else:
-                self.redirect(users.create_login_url(self.request.uri))
-        else:
-            path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
-            self.response.out.write(open(path, 'r').read())
+  def get(self):
+    if self.request.get("debug") == "True":
+      # get current user
+      Login = users.get_current_user()
+      if Login:
+        # get all skills of that user
+        #Email = Login.email()
+        Email = self.request.get("usermail") 
+        User = user.gql('WHERE Email=\''+Email+'\'').run(limit=1).next()
+        Skills = User.get_skills()
+        Services = []
+        for s in Skills:
+          LindedServices = s.linked_services.run()
+          for Service in LindedServices:
+              Services.append(Service)
+        self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
+      else:
+         self.redirect(users.create_login_url(self.request.uri))
+    else:
+      path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
+      self.response.out.write(open(path, 'r').read())
 
 class userview(webapp.RequestHandler):
     """View rendering the user jsons"""
@@ -73,22 +72,22 @@ class login(webapp.RequestHandler):
     def get(self):
         Login = users.get_current_user()
         if Login:
-            q = user.gql('WHERE Email=\''+login.email()+'\'')
-            if q.count() == 0:
-                u= user(ForeName = "",
-                    SureName = "",
-                    Email = login.email(),
-                    ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
-                    Headline = 'Awesomness',
-                    TimeCredit = random.randint(0,10),
-                    Involvement = random.randint(0,1000),
-                    Awards = []
-                    )
-                u.put()
+          q = user.gql('WHERE Email=\''+login.email()+'\'')
+          if q.count() == 0:
+              u= user(ForeName = "",
+                  SureName = "",
+                  Email = login.email(),
+                  ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
+                  Headline = 'Awesomness',
+                  TimeCredit = random.randint(0,10),
+                  Involvement = random.randint(0,1000),
+                  Awards = []
+                  )
+              u.put()
             
             
-            self.response.headers['Content-Type'] = 'text/plain'
-            self.response.out.write('Hello, ' + Login.email())
+          self.response.headers['Content-Type'] = 'text/plain'
+          self.response.out.write('Hello, ' + Login.email())
         else:
             self.redirect(users.create_login_url(self.request.uri))
             

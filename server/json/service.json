@@ -30,4 +30,39 @@
     "ModifiedTime": "01/12/2012 21:15:12", 
     "CreatedTime": "01/12/2012 20:15:31", 
     "Feedback": ""
-}]
+},
+{
+    "Id": "hash1", 
+    "Address": "21 rue servan, 75011 Paris", 
+    "EndDate": "05/01/2013", 
+    "StartDate": "21/12/2012", 
+    "Description": "I'm off of Paris for 15 days to travel. I am looking for someone willing to water my plants every two days as they need a lot of water", 
+    "Category": "house-care", 
+    "Skill": "gardening",
+    "Title": "water my weed during me being high", 
+    "Grade": "", 
+    "TimeNeeded": "3", 
+    "Done": "false", 
+    "Requester": {
+        "Type":"Small",
+        "User": {
+            "FirstName": "Augustin", 
+            "SurName": "Riedinger", 
+            "Id": "hash", 
+            "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+            "TimeCredit": "3", 
+            "Involvement": "165"
+        }
+    }, 
+    "Icons": {
+      "Geoloc": "True",
+      "Friends": "True",
+      "FriendsOfFriends": "False",
+      "Time": "False"
+    },
+    "ModifiedTime": "01/12/2012 21:15:12", 
+    "CreatedTime": "01/12/2012 20:15:31", 
+    "Feedback": ""
+}
+
+]

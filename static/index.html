@@ -48,7 +48,7 @@
 				<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
 			</div>
 			<div id="feed" class="block">
-				<table class="table table-striped service-list">
+				<table class="table table-striped service-list" id="feed-table">
 					<thead>
 						<tr><ul id="filters">
 							<li>
@@ -68,40 +68,20 @@
 							</li>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td class="service">
-								<div class="service-block">
+								<script type="text/template" id="tpl-service">
 									<div class="sub-service service-avatar">
-										<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded" /> 
+										<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=64" class="img-rounded" /> 
 									</div>
 									<div class="sub-service service-content">
 										<p class="service-title"><strong>Adrian Gonzy</strong>
 											Manual > Building</p>
-											<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
-										</div>
-										<div class="sub-service service-info">
-											<span>1</span>
-											<img src="img/1354379904_NeedleLeftYellow2.png"/>
-										</div>
+										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
 									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="service">
-									<div class="service-block">
-										<img src="" />
+									<div class="sub-service service-info">
+										<span>1</span>
+										<img src="img/1354379904_NeedleLeftYellow2.png"/>
 									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="service">
-									<div class="service-block">
-										<img src="" />
-									</div>
-								</td>
-							</tr>
-						</tbody>
+								</script>
 					</table>
 				</div>
 			</div>

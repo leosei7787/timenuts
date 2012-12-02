@@ -1,12 +1,19 @@
 //Models
-window.Lieu = Backbone.Model
-.extend({
+window.Service = Backbone.Model.extend({
 	url : function() {
-		return '/services'
+		return '/data/services'
 	},
 	initialize : function() {
-		this.passeFiltre = true;
-		this.changeEtat = false;
-		this.initPhotos();
+	}
+});
+
+window.Services = Backbone.Collection.extend({
+	model : Service,
+	url : '/data/services'
+});
+
+window.User = Backbone.Model.extend({
+	url : function() {
+		return '/data/user'
 	}
 });

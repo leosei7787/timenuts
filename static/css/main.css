@@ -4,6 +4,15 @@ body {
 	padding: 0;
 }
 
+.loading {
+	width: 100%;
+	text-align: center;
+}
+
+.loading img {
+	margin: 10px;
+}
+
 header {
 	background-color: black;
 	width: 100%;
