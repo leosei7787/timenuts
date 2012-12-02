@@ -39,7 +39,10 @@ ConfigProfils = [
 			"Web Application",
 			"English",
 			"French"
-		]
+		],
+        "Friends":[
+            "alexandre.hajjar@gmail.com",
+        ],
 	},
 	{
 		"Email":"test@example.com",
@@ -69,7 +72,10 @@ ConfigProfils = [
 		"Skills":[
 			"Web Application",
 			"French",
-		]
+		],
+        "Friends":[
+            "sei7787@gmail.com"
+        ],
 	},
 ]
 

@@ -130,7 +130,8 @@ class userview(webapp.RequestHandler):
         else:
             d = u.to_big_dict()
         Login = users.get_current_user()
-        if u.key() in Login.Friends:
+        LoginUser = get_db_user(self.request, Login)
+        if u.key() in LoginUser.Friends:
             d['AreFriends'] = "True"
         else:
             d['AreFriends'] = "False"
@@ -303,6 +304,15 @@ class filltable (webapp.RequestHandler):
           for Skill in User["Skills"]:
             s = skill.gql("WHERE Name='"+Skill+"'").run().next() 
             skillstouser(Skill=s,User=u).put()  
+
+        # Friends
+        for User in ConfigProfils:
+          if User.has_key('Friends'):
+              for FriendEmail in User['Friends']:
+                FriendUser = user.gql("WHERE Email='%s'" % FriendEmail).run().next()
+                u = user.gql("WHERE Email='%s'" % User['Email']).run().next()
+                u.Friends.append(FriendUser.key())
+              u.put() 
 
         #Service
         for Service in ConfigServices:
