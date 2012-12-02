@@ -30,15 +30,15 @@
 			<div id="small-me" class="block">
 				<script type="text/template" id="tpl-small-me">
 				<img src="<%=Image %>?s=64" class="img-rounded"/>
-				<span><%= Requester.User.FirstName %> <%= Requester.User.SurName %>
+				<span><%= FirstName %> <%= SurName %>
 				</span>
 				<div id="scores">
 					<ul>
 						<li>
-							<label>Credit: </label><span>30 hours</span> 
+							<label>Credit: </label><span><%=TimeCredit %> hours</span> 
 						</li>
 						<li>
-							<label>Involvment: </label><span>146</span>
+							<label>Involvment: </label><span><%=Involvement %></span>
 						</li>
 					</ul>
 				</div>
@@ -47,7 +47,7 @@
 		</div>
 		<div id="right-col">
 			<div id="create" class="block">
-				<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
+				<button id="button-create" class="btn btn-success btn-block">Make a Request</button>
 			</div>
 			<div id="feed" class="block">
 				<table class="table table-striped service-list" id="feed-table">
