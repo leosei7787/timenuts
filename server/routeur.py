@@ -46,10 +46,12 @@ class services(webapp.RequestHandler):
         for s in Skills:
           LindedServices = s.linked_services.run()
           for Service in LindedServices:
-              Services.append(Service)
+            Services.append(Service)
+
+        self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
         self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
       else:
-         self.redirect(users.create_login_url(self.request.uri))
+        self.redirect(users.create_login_url(self.request.uri))
     else:
       path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
       self.response.out.write(open(path, 'r').read())

@@ -4,8 +4,8 @@
     "EndDate": "05/01/2013", 
     "StartDate": "21/12/2012", 
     "Description": "I'm off of Paris for 15 days to travel. I am looking for someone willing to water my plants every two days as they need a lot of water", 
-    "Category": "house-care", 
-    "Skill": "gardening",
+    "Category": "House-Care", 
+    "Skill": "Gardening",
     "Title": "Plant watering during my holidays", 
     "Grade": "", 
     "TimeNeeded": "3", 
@@ -16,7 +16,7 @@
             "FirstName": "Augustin", 
             "SurName": "Riedinger", 
             "Id": "hash", 
-            "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+            "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e", 
             "TimeCredit": "3", 
             "Involvement": "165"
         }
@@ -37,8 +37,8 @@
     "EndDate": "05/01/2013", 
     "StartDate": "21/12/2012", 
     "Description": "I'm off of Paris for 15 days to travel. I am looking for someone willing to water my plants every two days as they need a lot of water", 
-    "Category": "house-care", 
-    "Skill": "gardening",
+    "Category": "House-Care", 
+    "Skill": "Gardening",
     "Title": "water my weed during me being high", 
     "Grade": "", 
     "TimeNeeded": "3", 
@@ -49,7 +49,7 @@
             "FirstName": "Augustin", 
             "SurName": "Riedinger", 
             "Id": "hash", 
-            "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
+            "Image": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e", 
             "TimeCredit": "3", 
             "Involvement": "165"
         }
