@@ -24,6 +24,16 @@ header {
 	color: white;
 }
 
+.menu  {
+	display: inline-block;
+	padding-right: 10px;
+}
+
+#search {
+	float: right;
+	padding: 5px;
+}
+
 section, nav {
 	width: 900px;
 	margin: 0 auto;

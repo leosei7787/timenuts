@@ -84,7 +84,7 @@ window.MeSmallView = Backbone.View.extend({
 	}
 });
 
-window.MeFullView = Backbone.View.extend({
+window.UserFullView = Backbone.View.extend({
 	id : 'tpl-main-user-data',
 	tagName : 'section',
 	template : _.template($('#tpl-main-user-data').html()),

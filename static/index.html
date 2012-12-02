@@ -24,7 +24,13 @@
 </head>
 <body>
 	<script type="text/template" id="tpl-menu">
-			<nav><div id="logo"><a href="#"><h3>Time-Nuts</h3></a></div></nav><div id="content"></div>
+			<nav><div id="logo" class="menu"><a href="#"><h3>Time-Nuts</h3></a></div>
+			<div class="menu"><a href="#!profile/me">Me</a></div>
+			<div id="search">
+			  <input type="text" class="input-medium search-query">
+			  <button type="submit" class="btn">Search</button>
+			</div>
+			</nav><div id="content"></div>
 	</script>
 
 	<script type="text/template" id="tpl-feed-skeleton">
@@ -80,7 +86,7 @@
 			<img src="<%=Requester.User.Image %>?s=64" class="img-rounded" /> 
 		</div>
 		<div class="sub-service service-content">
-			<p class="service-title"><a href="#!/profile/<%= Requester.User.Id %>"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong></a>
+			<p class="service-title"><a href="#!profile/<%= Requester.User.Id %>"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong></a>
 				<%=Category %> > <%=Skill %></p>
 				<small class="service-chapeau"><%= Title %></small>
 			</div>
