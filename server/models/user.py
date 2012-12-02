@@ -12,6 +12,7 @@ class user(db.Model):
   TimeCredit = db.IntegerProperty(required = True)
   Involvement = db.IntegerProperty(required = True)
   Awards = db.ListProperty(db.Key)    # To the award model
+  Address = db.PostalAddress()
   
   def get_awards(self):
     """Get the list of proper awards objects"""
@@ -42,6 +43,7 @@ class user(db.Model):
     d = self.to_small_dict()
     d['Email'] = self.Email
     d['Headline'] = self.Headline
+    d['Address'] = self.Address
     from server.models.award import award
     d['Awards'] = [award.get_by_id(x.id()).Name for x in self.Awards]
     return d
