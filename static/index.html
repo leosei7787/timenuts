@@ -34,13 +34,18 @@
 	</script>
 
 	<script type="text/template" id="tpl-feed-skeleton">
-		<div id="left-col">
+		<div id="big-left-col">
+			<div id="left-col">
+			</div>
+			<div id="left-colbis">
+				<div class="block-like">
+					<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
+				</div>
+			</div>
 		</div>
 		<div id="right-col">
-		<div class="block-like">
-				<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
-				</div>
 			<div id="feed" class="block">
+				<h5 class="container-title">NEW TASKS FOR YOU</h5>
 				<table class="table table-striped service-list" id="feed-table">
 					<thead>
 						<tr><ul id="filters">
@@ -133,27 +138,25 @@
 				
 				<div id="profileScoresContainer">
 					<div id="timeCreditDisplay" class="scoreDisplay">
-	<!-- 					<h5 id="timeCreditLabel">TIME:</h5> -->
-						<span><img src="img/clock.png" class="icon" /><span>
+						<span><img src="img/clock.png" class="icon" /></span>
 						<span id="timeCredit"><%=TimeCredit %></span>
-	<!-- 					<p id="timeCreditExpression">YOUPIII!!</p> A voir si on le fait -->
+						<span><h5 class="scoreLabel">TIME CREDIT</h5></span>
 					</div>
 					<div id="engagementScoreDisplay" class="scoreDisplay">
 						<span><img src="img/engagement2hd.png" class="icon"/></span>
 						<span id="engagementScore"><%=Involvement %></span>
-						<span><h5 id="engagementScoreLabel">ENGAGEMENT</h5></span>
-	<!-- 					<p id="engagementScoreExpression">Great Activity DUDE !!</p>  A voir si on le fait -->
+						<span><h5 class="scoreLabel">ENGAGEMENT</h5></span>
 					</div>
 					<div id="badgesBoardDisplay" class="scoreDisplay">
 						<ul id="badgesBoardList">
 							<li id="badgeContainer">
-								<img src="img/badge4.png" class="badgedisplay" />
+							<img src="img/badge4.png" class="badgedisplay" />
 							</li>
 							<li id="badgeContainer">
-								<img src="img/badge5.png" class="badgedisplay" />
+							<img src="img/badge5.png" class="badgedisplay" />
 							</li>
 							<li id="badgeContainer">
-								<img src="img/badge6.png" class="badgedisplay" />
+							<img src="img/badge6.png" class="badgedisplay" />
 							</li>
 						</ul>
 					</div>

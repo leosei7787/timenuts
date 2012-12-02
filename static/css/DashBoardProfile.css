@@ -1,183 +1,3 @@
-
-/* GENERAL TAGS */
-
-body {
-/* 	background: rgb(255, 255, 128); */
-}
-
-h2 {
-	font-family: 'Anaheim', sans-serif;
-}
-
-ul {
-	list-style: none;
-	padding-left: 0px;
-}
-
-/* simpleProfileContainer */
-
-#simpleProfileContainer {
-	width: 900px;
-}
-
-#simpleProfileContainer h2, h3 {
-	margin: 0px;
-}
-
-/* PROFILE TEXT DISPLAY */
-.profile-block {
-	clear: both;
-	height: 200px;
-}
-#profilePic, #profileText, #profileScoresContainer {
-	margin: 20px;
-	float: left;
-}
-
-#profilePic {
-	width: 128px;
-	box-shadow: 1px 1px 2px 1px gray;
-}
-
-#profileText p {
-	display: block;
-}
-
-#profileText #profileFullName h2 {
-	display: inline-block;
-}
-
-#profileText p#profileHeadLine {
-	font-size: 16px;
-	color: gray;
-}
-
-/* SCORES DISPLAY */
-
-#profileScoresContainer div {
-	display: block;
-}
-
-#profileScoresContainer {
-	float: right;
-	background: rgba(128, 128, 128, 0.2);
-	border-radius: 5px;
-	padding: 12px;
-}
-
-.scoreDisplay h5, span, ul, li{
-	margin-top: 4px;
-	margin-left: 5px;
-	font-family: 'Rambla', sans-serif;
-}
-
-.scoreDisplay span {
-	font-size: 20px;	
-}
-
-#engagementScoreDisplay h5 {
-	display: inline;
-}
-
-.badgedisplay {
-	width: 40px;
-}
-
-.icon {
-	width: 30px;
-	margin: 2px;
-}
-
-.arrow {
-	height: 45px;
-}
-
-#badgesBoardDisplay  li{
-	display: inline-block;
-}
-
-/* servicesHistoryContainer */
-
-#skillsContainer {
-	width: 325px;
-	float: left;
-}
-
-#histories-container {
-	width: 545px;
-	float: right;
-}
-
-
-h5.container-title {
-	margin-left: 20px;
-	text-shadow: 1px 1px 3px gray;
-}
-
-
-.service-info-small {
-	width: 110px;
-}
-
-.service-info-small img {
-	width:30px;
-}
-.service-info-small ul {
-	margin: auto;
-}
-.service-info-small li {
-	width: 30px;
-	display: inline-block;	
-	margin: 2px;
-}
-
-/* SKILLS */
-
-.sub-skill {
-	display: inline-block;
-	vertical-align: middle;
-	margin: 2px;
-}
-
-.sub-skill img.metric-icon {
-	width: 22px;
-}
-
-.skillBadge {
-	width: 70px;
-}
-
-.block {
-	background: rgba(78, 78, 78, 0.05);
-}
-
-/* MAKE REQUEST */
-
-.geoloc-title {
-	margin: 0px;
-		
-}
-
-.form-horizontal textarea {
-	width: 400px;	
-}
-
-.request-table-date {
-	padding: 20px;
-}
-
-.request-table-date a {
-	margin: auto 10px auto 10px;
-}
-
-.request-table-date td,
-.request-table-date th,
-.request-table-date thead,
-.request-table-date tbody {
-	padding: 4px;
-}
-
-
 /* GENERAL TAGS */
 
 body {
@@ -202,8 +22,8 @@ ul {
 
 /* PROFILE TEXT DISPLAY */
 .profile-block {
-	clear: both;
-	height: 200px;
+	/*clear: both;*/
+	height: 180px;
 }
 #profilePic, #profileText, #profileScoresContainer {
 	margin: 20px;
@@ -247,8 +67,9 @@ ul {
 	font-size: 20px;	
 }
 
-#engagementScoreDisplay h5 {
+h5.scoreLabel {
 	display: inline;
+	text-align: right;
 }
 
 .badgedisplay {

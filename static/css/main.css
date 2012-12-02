@@ -1,7 +1,25 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+@font-face {
+    font-family: 'CodeProDemoRegular';
+	src: local('CodeProDemoRegular') url('Code_Pro_Demo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CodeProLightDemoRegular';
+    src: local('CodeProLightDemoRegular') url('Code_Pro_Light_Demo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
 	background-color: #F7F7F9;
 	margin: 0;
 	padding: 0;
+	font-family: Montserrat;
 }
 
 a:hover {
@@ -49,7 +67,16 @@ section {
 	color: #333;
 }
 
+#big-left-col {
+	width: 300px;
+	float: left;
+}
 #left-col {
+	width: 300px;
+	float: left;
+}
+
+#left-colbis {
 	width: 300px;
 	float: left;
 }
@@ -91,11 +118,6 @@ section {
 	padding:5px;
 }
 
-.name {
-	font-family: 'Anaheim', sans-serif;
-
-}
-
 .service-block {
 	height: inherit;
 }
@@ -123,4 +145,17 @@ section {
 	width: 110px;
 	text-align: right;
 	float: right;
+}
+
+#button-create {
+	font-size:27px;
+	height: 52px;
+	text-shadow: #333 2px 2px;
+	font-weight: light;
+}
+#small-me {
+	padding: 9px;
+}
+#profileFullName h2.name {
+	font-weight: bold;
 }
