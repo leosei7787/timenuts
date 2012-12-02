@@ -151,10 +151,12 @@ var AppRouter = Backbone.Router.extend({
 
 		$('#content').append(this.userFullView.render().el);
 
-
 		this.userDoneservices = new UserDoneservices({
-			// userid : this.userFull.get('id')
+			// url : '/data/doneservices/'+_id
 		});
+
+		console.log(this.userDoneservices);
+
 		this.userDoneservices.fetch({
 			success : function(collection, response) {
 				console
@@ -169,34 +171,34 @@ var AppRouter = Backbone.Router.extend({
 		});
 		this.userDoneservicesView = new HistoryservicesView({
 			collection: this.userDoneservices,
-			title : 'Success Services'
+			title : 'Finished Services'
 		});
-		console.log('ok');
 		$('#right-col').append(this.userDoneservicesView.render().el);
 
-		this.userRequests = new UserRequests({
-			// userid : this.userFull.get('id')
-		});
-		console.log(this.userRequests);
-		this.userRequests.fetch({
-			success : function(collection, response) {
-				console
-				.log('Success in loading ' + collection + ' at '
-					+ collection.url + ' with ' + response.length
-					+ ' elements');
-			},
-			error : function(collection, response) {
-				console.log('Error in loading : ' + collection.name + ' at '
-					+ collection.url + ' with response ' + response);
-			}
-		});
 
-		this.userRequestsView = new HistoryservicesView({
-			collection: this.userRequests,
-			title : 'Requested Services'
-		});
+		// this.userRequests = new UserRequests({
+		// 	url : '/data/requests/'+_id
+		// });
+		// console.log(this.userRequests);
+		// this.userRequests.fetch({
+		// 	success : function(collection, response) {
+		// 		console
+		// 		.log('Success in loading ' + collection + ' at '
+		// 			+ collection.url + ' with ' + response.length
+		// 			+ ' elements');
+		// 	},
+		// 	error : function(collection, response) {
+		// 		console.log('Error in loading : ' + collection.name + ' at '
+		// 			+ collection.url + ' with response ' + response);
+		// 	}
+		// });
 
-		$('#right-col').append(this.userRequestsView.render().el);
+		// this.userRequestsView = new HistoryservicesView({
+		// 	collection: this.userRequests,
+		// 	title : 'Requested Services'
+		// });
+
+		// $('#right-col').append(this.userRequestsView.render().el);
 	}
 });
 

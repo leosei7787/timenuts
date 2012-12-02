@@ -43,23 +43,13 @@ window.UserFull = Backbone.Model.extend({
 window.UserDoneservices = Backbone.Collection.extend({
 	model : Service,
 	url : function() {
-		console.log(this);
-		return '/data/doneservices/'+this.userid;
-	},
-	initialize : function() {
-		this.userid = '';
-
-		// this.userid = this.options.get(userid);
+		return '/data/doneservices/'
 	}
 });
 
 window.UserRequests = Backbone.Collection.extend({
 	model : Service,
 	url : function() {
-		return	'/data/requests/'+this.userid;
-	},
-	initialize : function() {
-		this.userid = '';
-		// this.userid = this.options.get(userid);
+		return ''
 	}
 });
