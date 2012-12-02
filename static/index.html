@@ -25,27 +25,29 @@
 	<nav><div id="logo"><h3>Logo</h3></div></nav>
 	</header>
 	</script>
-	<section>
+	<section id="content">
 		<div id="left-col">
 			<div id="small-me" class="block">
-				<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded"/>
-				<span>Augustin Riedinger
+				<script type="text/template" id="tpl-small-me">
+				<img src="<%=Image %>?s=64" class="img-rounded"/>
+				<span><%= FirstName %> <%= SurName %>
 				</span>
 				<div id="scores">
 					<ul>
 						<li>
-							<label>Credit: </label><span>30 hours</span> 
+							<label>Credit: </label><span><%=TimeCredit %> hours</span> 
 						</li>
 						<li>
-							<label>Involvment: </label><span>146</span>
+							<label>Involvment: </label><span><%=Involvement %></span>
 						</li>
 					</ul>
 				</div>
+				</script>
 			</div>
 		</div>
 		<div id="right-col">
 			<div id="create" class="block">
-				<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
+				<button id="button-create" class="btn btn-success btn-block">Make a Request</button>
 			</div>
 			<div id="feed" class="block">
 				<table class="table table-striped service-list" id="feed-table">
@@ -70,10 +72,10 @@
 					</thead>
 					<script type="text/template" id="tpl-service">
 					<div class="sub-service service-avatar">
-					<img src="<%=User.Image %>?s=64" class="img-rounded" /> 
+					<img src="<%=Requester.User.Image %>?s=64" class="img-rounded" /> 
 					</div>
 					<div class="sub-service service-content">
-					<p class="service-title"><strong><%= User.FirstName %> <%= User.SurName %></strong>
+					<p class="service-title"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong>
 					<%=Category %> > <%=Skill %></p>
 					<small class="service-chapeau"><%= Title %></small>
 					</div>

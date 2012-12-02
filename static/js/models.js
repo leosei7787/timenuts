@@ -17,9 +17,3 @@ window.User = Backbone.Model.extend({
 		return '/data/user'
 	}
 });
-
-window.Users = Backbone.Collection.extend({
-	url : function() {
-		return '/data/user'
-	}
-});

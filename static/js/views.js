@@ -56,3 +56,17 @@ window.ServicesView = Backbone.View.extend({
 		return this;
 	}
 });
+
+window.UserSmallView = Backbone.View.extend({
+	id : 'small-me',
+	className : 'block',
+	template : _.template($('#tpl-small-me').html()),
+	render : function(eventName) {
+		if (this.model) {
+			$(this.el).html(this.template(this.model.toJSON()));
+		} else {
+			$(this.el).html(new LoadingView.render().el);
+		}
+		return this;
+	}
+});

@@ -2,60 +2,45 @@
 /* GENERAL TAGS */
 
 body {
-	background: rgb(255, 255, 128);
+/* 	background: rgb(255, 255, 128); */
 }
 
 h2 {
 	font-family: 'Anaheim', sans-serif;
 }
 
-
 ul {
 	list-style: none;
 	padding-left: 0px;
 }
 
-
-
 /* simpleProfileContainer */
-.container {
-	margin: 20px auto 0px auto;
-	position: relative;
-	border-radius: 5px; 
-	background: rgb(255, 255, 255);	
-}
 
 #simpleProfileContainer {
 	width: 900px;
-	height: 200px;
-}
-
-#profilePic {
-	
-	float: left;
-	margin: 20px;
-
-	box-shadow: 1px 1px 2px 1px gray;
 }
 
 #simpleProfileContainer h2, h3 {
 	margin: 0px;
 }
 
-#simpleProfileContainer div {
-	display: inline-block;
-	vertical-align: top;
+/* PROFILE TEXT DISPLAY */
+.profile-block {
+	clear: both;
+	height: 200px;
+}
+#profilePic, #profileText, #profileScoresContainer {
+	margin: 20px;
+	float: left;
 }
 
-/* PROFILE TEXT DISPLAY */
+#profilePic {
+	width: 128px;
+	box-shadow: 1px 1px 2px 1px gray;
+}
 
 #profileText p {
 	display: block;
-}
-
-#simpleProfileContainer div#profileText, div#profileScoresContainer {
-	margin-top: 20px;
-	margin-right: 30px;
 }
 
 #profileText #profileFullName h2 {
@@ -83,7 +68,6 @@ ul {
 .scoreDisplay h5, span, ul, li{
 	margin-top: 4px;
 	margin-left: 5px;
-	
 	font-family: 'Rambla', sans-serif;
 }
 
@@ -101,6 +85,7 @@ ul {
 
 .icon {
 	width: 30px;
+	margin: 2px;
 }
 
 .arrow {
@@ -114,18 +99,15 @@ ul {
 /* servicesHistoryContainer */
 
 #skillsContainer {
-	width: 330px;
+	width: 325px;
 	float: left;
 }
 
 #histories-container {
-	width: 550px;
+	width: 545px;
 	float: right;
 }
 
-.history-container {
-	width:inherit;
-}
 
 h5.container-title {
 	margin-left: 20px;
@@ -134,7 +116,37 @@ h5.container-title {
 
 
 .service-info-small {
-	width: 60px;
+	width: 110px;
 }
 
+.service-info-small img {
+	width:30px;
+}
+.service-info-small ul {
+	margin: auto;
+}
+.service-info-small li {
+	width: 30px;
+	display: inline-block;	
+	margin: 2px;
+}
 
+/* SKILLS */
+
+.sub-skill {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 2px;
+}
+
+.sub-skill img.metric-icon {
+	width: 22px;
+}
+
+.skillBadge {
+	width: 70px;
+}
+
+.block {
+	background: rgba(78, 78, 78, 0.05);
+}

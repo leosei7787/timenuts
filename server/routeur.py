@@ -76,11 +76,11 @@ class login(webapp.RequestHandler):
     def get(self):
         Login = users.get_current_user()
         if Login:
-          q = user.gql('WHERE Email=\''+login.email()+'\'')
+          q = user.gql('WHERE Email=\''+Login.email()+'\'')
           if q.count() == 0:
               u= user(FirstName = "",
                   LastName = "",
-                  Email = login.email(),
+                  Email = Login.email(),
                   ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
                   Headline = 'Awesomness',
                   TimeCredit = random.randint(0,10),
@@ -114,9 +114,6 @@ class filltable (webapp.RequestHandler):
         query = skill.all(keys_only=True)
         entries =query.fetch(1000)
         db.delete(entries)        
-        query = skillstouser.all(keys_only=True)
-        entries =query.fetch(1000)
-        db.delete(entries)
         query = skillstouser.all(keys_only=True)
         entries =query.fetch(1000)
         db.delete(entries)
