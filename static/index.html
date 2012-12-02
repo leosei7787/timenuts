@@ -25,7 +25,7 @@
 </head>
 <body>
 	<script type="text/template" id="tpl-menu">
-			<nav><div id="logo"><h3>Logo</h3></div></nav><div id="content"></div>
+			<nav><div id="logo"><a href="#"><h3>Time-Nuts</h3></a></div></nav><div id="content"></div>
 	</script>
 
 	<script type="text/template" id="tpl-feed-skeleton">
@@ -63,8 +63,8 @@
 
 
 	<script type="text/template" id="tpl-small-me">
-		<img src="<%=ImageURL %>?s=64" class="img-rounded"/>
-		<span><%= ForeName %> <%= SureName %>
+		<img src="<%=Image %>?s=64" class="img-rounded"/>
+		<span><a href="#!profile/me"><%= FirstName %> <%= LastName %></a>
 		</span>
 		<div id="scores">
 			<ul>
@@ -84,7 +84,7 @@
 			<img src="<%=Requester.User.Image %>?s=64" class="img-rounded" /> 
 		</div>
 		<div class="sub-service service-content">
-			<p class="service-title"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong>
+			<p class="service-title"><a href="#!/profile/<%= Requester.User.Id %>"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong></a>
 				<%=Category %> > <%=Skill %></p>
 				<small class="service-chapeau"><%= Title %></small>
 			</div>
@@ -108,13 +108,13 @@
 			<div class="block profile-block">
 		
 				<div id="profilePic" class="pic img-rounded">
-					<img src="<%=ImageURL %>?s=128" />
+					<img src="<%=Image %>?s=128" />
 				</div>
 				
 				<div id="profileText">
 					<div id="profileFullName">
-						<h2 id="profileFirstName"><%= ForeName %></h2>
-						<h2 id="profileSurname"><%= SureName%></h2>
+						<h2 id="profileFirstName"><%= FirstName %></h2>
+						<h2 id="profileSurname"><%= LastName%></h2>
 					</div>
 					<p id="profileHeadLine">Hackathons rock !</p>
 				</div>

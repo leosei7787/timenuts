@@ -8,6 +8,8 @@ app = webapp.WSGIApplication([
                                ('/', index), 
                                ('/data/services', services),
                                ('/data/service/.*', serviceelement),  
+                               ('/data/comment/.*', commentelement),
+                               ('/data/comments/.*', comments),
                                ('/data/skills', skills),
                                ('/data/me', myuserview),
                                ('/data/user', userview),

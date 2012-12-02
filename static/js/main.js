@@ -20,7 +20,7 @@ var AppRouter = Backbone.Router.extend({
 		this.feedSkeletonView = new FeedSkeletonView();
 		$('#content').append(this.feedSkeletonView.render().el);
 
-		this.me = new User();
+		this.me = new Me();
 		this.me.fetch({
 			success : function(collection, response) {
 				console
@@ -34,7 +34,7 @@ var AppRouter = Backbone.Router.extend({
 			}
 		});
 
-		this.meView = new UserSmallView({
+		this.meView = new MeSmallView({
 			model : this.me
 		});
 
@@ -63,7 +63,7 @@ var AppRouter = Backbone.Router.extend({
 	me : function() {
 		$('#content').empty();
 
-		this.meFull = new UserFull();
+		this.meFull = new MeFull();
 		this.meFull.fetch({
 			success : function(collection, response) {
 				console
@@ -77,7 +77,7 @@ var AppRouter = Backbone.Router.extend({
 			}
 		});
 
-		this.meFullView = new UserFullView({
+		this.meFullView = new MeFullView({
 			model : this.meFull
 		});
 

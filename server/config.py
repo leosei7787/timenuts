@@ -82,7 +82,7 @@ ConfigServices = [
 	"EndDate" : "2013-01-03",
 	"Skill" : "House Keeping",
 	"Geoloc" : True,
-    "Requester" : "alexandre.hajjar@gmail.com"
+	"Requester" : "alexandre.hajjar@gmail.com"
 },
 {
     "Title" : "AngelHack",

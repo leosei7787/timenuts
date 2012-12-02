@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from google.appengine.ext import webapp
 from google.appengine.api import users
 from server.models.user import user
@@ -172,6 +173,37 @@ class skills(webapp.RequestHandler):
     self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
     self.response.out.write( json.dumps(Cat) )
 
+class commentelement(webapp.RequestHandler):
+  def post(self):
+    Path = self.request.path.split("/")
+    Id = Path[ (len(Path)-1) ]
+    Login = users.get_current_user()
+    User = get_db_user(self.request,Login)
+    
+    #Store comment
+    c = comment(Comment = self.request.get("Comment"),
+      Owner = User
+      )
+    c.put()
+
+    #Append comment to Service
+    Service = service.get_by_id(int(Id))
+    Service.Comments.append(c)
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    self.response.out.write( json.dumps(Service) )
+
+
+
+class comments(webapp.RequestHandler):
+  def get(self):
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    Path = self.request.path.split("/")
+    Id = Path[ (len(Path)-1) ]
+    Service = service.get_by_id(int(Id))
+    Comments = Service.Comments
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    self.response.out.write( json.dumps([c.to_dict() for c in Comments]) )
+
 class applyrequest(webapp.RequestHandler):
     @login_required
     def post(self):
@@ -296,15 +328,14 @@ class filltable (webapp.RequestHandler):
             ).put()
 
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
-        self.response.write(len(ServiceApplicants))
+        self.response.write("Done")
 
 class index (webapp.RequestHandler):
     def get(self):  
         Path = os.path.split(__file__)[0].split("/")
         Path = Path[0:(len(Path)-1)]
-        File = "/".join(Path) + '/static/index.html'
+        File = os.path.join('static/index.html')
         self.response.out.write(File)
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.out.write(open(File, 'r').read()) 
-
 
