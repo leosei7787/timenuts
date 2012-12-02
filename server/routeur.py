@@ -66,7 +66,7 @@ class userview(webapp.RequestHandler):
         t = self.request.get('Type')
         if t == "small":
             self.response.out.write(json.dumps(u.to_small_dict()))
-        if t == "full":
+        elif t == "full":
             self.response.out.write(json.dumps(u.to_big_dict()))
         else:
             self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
