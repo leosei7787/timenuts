@@ -57,8 +57,17 @@ class services(webapp.RequestHandler):
           for Service in LindedServices:
             Services.append(Service)
 
+        ServicesDump = []
+        for p in Services:
+            temp = p.to_dict()
+            u = user.gql("WHERE Email='"+Email+"'" ).run(limit=1).next()
+            s = service.get_by_id(temp["Id"])
+            servapps = serviceapplicants.gql("WHERE Applicant=:1 AND Service=:2", u, s).count()
+            temp["Applied"] = True if servapps > 0 else False
+            ServicesDump.append(temp)
+
         self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
-        self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
+        self.response.out.write( json.dumps( ServicesDump) )
       else:
         self.redirect(users.create_login_url(self.request.uri))
     else:
@@ -75,21 +84,21 @@ class serviceelement(webapp.RequestHandler):
     self.response.out.write( json.dumps( Service.to_dict() ) )
 
   def post(self):
-    User = get_db_user(users.get_current_user)
+    User = get_db_user(self.request,users.get_current_user())
     Skill = skill.gql("WHERE Name='"+self.request.get('Skill')+"'").run().next()
     Service = service(
             Title =  self.request.get('Title'),
             Description = self.request.get('Description'),
             Requester = User ,
-            TimeNeeded = self.request.get('TimeNeeded'),
+            TimeNeeded = int(self.request.get('TimeNeeded')),
             Skill = Skill,
-            Geoloc = self.request.get('Geoloc'),
+            Geoloc = bool(self.request.get('Geoloc')),
             StartDate = datetime.strptime(self.request.get('StartDate'),'%Y-%M-%d'),
             EndDate = datetime.strptime(self.request.get('EndDate'),'%Y-%M-%d')
             )
     Service.put()
     self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
-    self.response.out.write( json.dumps( Service.to_dict() ) )
+    self.response.out.write( json.dumps( Service.to_dict() ))
 
 
 

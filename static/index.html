@@ -39,7 +39,7 @@
 			</div>
 			<div id="left-colbis">
 				<div class="block-like">
-					<button id="button-create" class="btn btn-primary btn-block">Make a Request</button>
+					<a id="button-create" class="btn btn-primary btn-block" href="/html/make-request.html">Make a Request</a>
 				</div>
 			</div>
 		</div>
@@ -94,6 +94,7 @@
 			<p class="service-title"><a href="#!profile/<%= Requester.User.Id %>"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong></a>
 				<%=Category %> > <%=Skill %></p>
 				<small class="service-chapeau"><%= Title %></small>
+				<button class="btn apply btn-mini" id="<% print('apply-'+Id) %>">Apply</button>
 			</div>
 			<div class="sub-service service-info">
 				<div class="service-date"><%= ModifiedTime.replace(/[0-9]{2}:[0-9]{2}:[0-9]{2}/g,'') %></div>
@@ -222,112 +223,19 @@
 				</div>
 			</div>
 			
-			<div id="right-col">
-			<div id="servicesHistoryContainer" class="block history-container">
-			<h5 class="container-title">GIVEN SERVICES</h5>
+			<div id="right-col"></div>
+				
+	</script>
+
+<script type="text/template" id="tpl-given-services">
+<div class="block history-container">
+			<h5 class="container-title"><%=title%></h5>
 			<table class="table table-striped">
 				<tbody>
-					<tr>
-						<td class="service">
-							<div class="service-block">
-								<div class="sub-service service-avatar">
-									<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=64" class="img-rounded" /> 
-								</div>
-								<div class="sub-service service-content">
-									<p class="service-title"><strong>Adrian Gonzy</strong>
-										Manual > Building</p>
-										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
-									</div>
-									<div class="sub-service service-info">
-										<ul>
-											<li>
-												<img src="img/location.png"/>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="service">
-							<div class="service-block">
-								<div class="sub-service service-avatar">
-									<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=128&d=identicon&r=PG" class="img-rounded" /> 
-								</div>
-								<div class="sub-service service-content">
-									<p class="service-title"><strong>Augustin Riedinger</strong>
-										Consulting > technical</p>
-										<small class="service-chapeau">Hi, I need help thinking about how to make a web site.</small>
-									</div>
-									<div class="sub-service service-info">
-										<ul>
-											<li>
-												<img src="img/fof.png" class="icon"/>
-											</li>
-											<li>
-												<img src="img/alarm.png" class="icon"/>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-					
-			<div id="requestHistoryContainer" class="block history-container">
-			<h5 class="container-title">REQUESTS</h5>
-				<table class="table table-striped">
-				<tbody>
-					<tr>
-						<td class="service">
-							<div class="service-block">
-								<div class="sub-service service-avatar">
-									<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=64" class="img-rounded" /> 
-								</div>
-								<div class="sub-service service-content">
-									<p class="service-title"><strong>Adrian Gonzy</strong>
-										Manual > Building</p>
-										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
-									</div>
-									<div class="sub-service service-info">
-										<ul>
-											<li>
-												<img src="img/location.png" class="icon"/>
-											</li>
-											<li>
-												<img src="img/alarm.png" class="icon"/>
-											</li>
-											<li>
-												<img src="img/friend.png" class="icon"/>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-						<td class="service">
-							<div class="service-block">
-								<div class="sub-service service-avatar">
-									<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=64" class="img-rounded" /> 
-								</div>
-								<div class="sub-service service-content">
-									<p class="service-title"><strong>Adrian Gonzy</strong>
-										Manual > Building</p>
-										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>		
-			</div>
+				</tbody>
+			</table>
 		</div>
-
-
-	</script>
+</script>
 
 		<script type="text/javascript" src="js/models.js"></script>
 		<script type="text/javascript" src="js/views.js"></script>

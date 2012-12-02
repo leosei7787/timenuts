@@ -1,0 +1,34 @@
+/* MAKE REQUEST */
+
+.geoloc-title {
+	margin: 0px;
+		
+}
+
+.form-horizontal textarea {
+	width: 400px;	
+}
+
+.request-table-date {
+	padding: 20px;
+}
+
+.request-table-date a {
+	margin: auto 10px auto 10px;
+}
+
+.request-table-date td,
+.request-table-date th,
+.request-table-date thead,
+.request-table-date tbody {
+	padding: 4px;
+}
+
+
+.popup {
+	width: 400px;
+}
+
+.modal-body {
+	padding: 20px 5px 0px 0px;
+}

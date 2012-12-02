@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		
-		<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="css/DashBoardProfile.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="css/datepicker.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/css/main.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/css/DashBoardProfile.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/css/datepicker.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/css/make-request.css" type="text/css" media="screen" />
 		
 		<script type="text/javascript" src="libs/jquery-1.8.2.js"></script> 
 		<script type="text/javascript" src="libs/bootstrap.js"></script>
 		<script type="text/javascript" src="libs/bootstrap-datepicker.js"></script>
 		
 	<script>
+		var StartDate = "2012-12-02";
+		var EndDate = "2012-12-25";
+		var Skills = {};
+
 		$(function(){
-			
-			$('#dp3').datepicker();
-			var startDate = new Date(2012,1,20);
-			var endDate = new Date(2012,1,25);
 			$('#dp4').datepicker()
 				.on('changeDate', function(ev){
 					if (ev.date.valueOf() > endDate.valueOf()){
@@ -25,6 +25,7 @@
 						$('#alert').hide();
 						startDate = new Date(ev.date);
 						$('#startDate').text($('#dp4').data('date'));
+						StartDate = $('#dp4').data('date');					
 					}
 					$('#dp4').datepicker('hide');
 				});
@@ -36,15 +37,67 @@
 						$('#alert').hide();
 						endDate = new Date(ev.date);
 						$('#endDate').text($('#dp5').data('date'));
+						EndDate = $('#dp5').data('date');
 					}
 					$('#dp5').datepicker('hide');
 				});
 		});
+
+		var request = function(){
+			$.post("/data/service/",{
+				StartDate:StartDate,
+				EndDate:EndDate,
+				Description:$("#Description").attr("value"),
+				Title:$("#Title").attr("value"),
+				TimeNeeded:$("#TimeNeeded").attr("value"),
+				Skill:$("#Skill option:selected").text(),
+				Geoloc:$("#Geoloc").is(':checked')?true:false
+			},
+			function(data){
+				window.location = "/";
+			}
+			)
+		}
+
+		$("body").ready(function(){
+				$("#FormSubmit").click(function(e){
+					request();
+				})
+				$.get("/data/skills",function(data){
+					Skills = data;
+					// fill Category
+					var cpt=0;
+					first = "";
+					$.each(Skills,function(cat,skills){
+						$("#Category").append("<option>"+cat+"</option>");
+						if(cpt == 0){
+							first = cat;
+						}
+						cpt++;
+					})
+					fill_skills(first);
+				})
+
+				$("#Category").change(function(){
+					cat = $("#Category option:selected").text();
+					fill_skills(cat);
+				})
+
+		});
+
+		var fill_skills=function(Cat){
+			$("#Skill").empty();
+			$.each(Skills[Cat],function(index,skill){
+				$("#Skill").append("<option>"+skill+"</option>")
+			})
+		}
+
+
 	</script>
 	</head>
 	<body>
 		<section class="request-form">
-			<form class="form-horizontal">
+			<div class="form-horizontal" id="requestService">
 				<div class="control-group">
 				    <div class="controls">
 				       <h1>Make Your Request</h1>
@@ -52,84 +105,20 @@
 				</div>
 			  <div class="control-group">
 			    <div class="controls">
-			      <input type="text" id="Title" placeholder="Subject">
+			      <input type="text" id="Title" name="Title" placeholder="Subject">
 			    </div>
 			   </div>
 			  <div class="control-group">
 			    <div class="controls">
-			    	<textarea rows="3" id="Description" placeholder="Description"></textarea>
+			    	<textarea rows="3" id="Description" name="Description" placeholder="Description"></textarea>
 			    </div>
 			  </div>
 			  <div class="control-group">
-			    <div class="controls">
-			     <label class="">
-			     	 <h5 class="geoloc-title">Is the request geolocalized ?</h5>
- 					 <input type="checkbox" id="Geoloc" value="Geoloc">
-				 </label>
-			    </div>
-			  </div>
-<!-- 			  <div class="control-group"> -->
-<!-- 			    <div class="controls"> -->
-<!-- 			     <label class="checkbox inline"> -->
-<!--  					 <input type="checkbox" id="Geoloc" value="Geoloc"> URGENT -->
-<!-- 				 </label> -->
-<!-- 			    </div> -->
-<!-- 			  </div> -->
-			    <div class="control-group">
-				     <div class="controls">
-					       <h5>Deadeline ?</h5>
-					   </div>
-				   	 <div class="controls">
-					   <table class="request-table-date">
-						<thead>
-							<tr>
-								<th>Start date<a href="#" class="btn small" id="dp4" data-date-format="yyyy-mm-dd" data-date="2012-02-20">Change</a></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td id="startDate">2012-02-20</td>
-							</tr>
-						</tbody
-						<thead>
-							<tr>
-								<th>End date<a href="#" class="btn small" id="dp5" data-date-format="yyyy-mm-dd" data-date="2012-02-25">Change</a></th>
-							</tr>
-						</thead>					
-						<tbody>
-							<tr>
-								<td id="endDate">2012-02-25</td>
-							</tr>
-						</tbody>
-						
-					</table>
-					</div>
-				</div>
-			   
-				<div class="control-group">
-					<div class="controls">
-				     	<h5>How long may it take ?</h5>
-				    </div>
-				   <div class="controls">
-					   <select class="span1" id="TimeNeeded" placeholder="Estimated time needed">
-						  <option>1h</option>
-						  <option>2h</option>
-						  <option>3h</option>
-						  <option>4h</option>
-						  <option>5h</option>
-						</select>
-					</div>
-				 </div>	
-				 <div class="control-group">
 				   <div class="controls">
 				       <h5>Which skill category is suited for this request ?</h5>
 				   </div>
 				   <div class="controls">
-					   <select id="Category" placeholder="Categories">
-						  <option>Languages</option>
-						  <option>Computer Science</option>
-						  <option>House Care</option>
-						  <option>Personal Service</option>
+					   <select id="Category" name="Category" placeholder="Categories">
 						</select>
 					</div>
 				 </div>	
@@ -138,52 +127,49 @@
 				       <h5>Which skills may be needed ?</h5>
 				 	  </div>
 				   <div class="controls">
-					   <select id="Skill" placeholder="Skills">
-						  <option>English</option>
-						  <option>Spannish</option>
-						  <option>French</option>
-						  <option>Russian</option>
-						  
-						  <option>Algorithm</option>
-						  <option>Java</option>
-						  <option>Web Application</option>
-						  <option>C++</option>
-						  
-						  <option>Gardening</option>
-						  <option>Plumbing</option>
-						  <option>Electricity</option>
-						  <option>cleaning</option>
-						  <option>House Keeping</option>
-						  
-						  <option>Baby sitting</option>
-						  <option>Parcel Fetching</option>
+					   <select id="Skill" name="Skill" placeholder="Skills">
 						</select>
 					</div>
 				</div>
+			      <div class="control-group">
+				     <div class="controls">
+					       <h5>Deadeline ?</h5>
+					   </div>
+				   	 <div class="controls">
+						<table class="request-table-date">
+							<th>Start date<a href="#" class="btn small" id="dp4" data-date-format="yyyy-mm-dd" data-date="2012-02-20">Change</a></th>
+							<td id="startDate">
+								2012-02-20
+							</td> <!-- todo send date in input  -->
+							<th>End date<a href="#" class="btn small" id="dp5" data-date-format="yyyy-mm-dd" data-date="2012-02-25">Change</a></th>
+							<td id="endDate">2012-02-25</td>
+						</table>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+				     	<h5>How long it may take ?</h5>
+				    </div>
+				   <div class="controls">
+						  <input type="number" id="TimeNeeded" name="TimeNeeded" class="span1" min="1"> Hour(s)
+					</div>
+				 </div>		
+				 			 
+				<div class="control-group">
+			    <div class="controls">
+			     <label>
+			     	 <h5 class="geoloc-title">Is the request geolocalized ?</h5>
+ 					 <input type="checkbox" id="Geoloc" name="Geoloc" value="Geoloc">
+				 </label>
+			    </div>
+			   </div>
 				<div class="form-actions">
-				  <button type="submit" class="btn btn-primary">Save changes</button>
+				  <button type="submit" class="btn btn-primary" id="FormSubmit">Save changes</button>
 				  <button type="button" class="btn">Cancel</button>
 				</div>
 			  </div>
-			</form>
+			</div>
 		</section>
-		
-		<a type="button" class="btn" style="width:100%;" href="#test_modal" data-toggle="modal">PopUp</a>
-		
-		
-		<div class="modal fade" id="test_modal">
-		  <div class="modal-header">
-		    <a class="close" data-dismiss="modal">&times;</a>
-		    <h3>Modal Header</h3>
-		  </div>
-		  <div class="modal-body">
-		    <p>Test Modal</p>
-		  </div>
-		  <div class="modal-footer">
-		    <a href="#" class="btn" data-dismiss="modal">Close</a>
-		    <a href="#" class="btn btn-primary">Save Changes</a>
-		  </div>
-		</div>
 		
 	</body>
 </html>

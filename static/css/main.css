@@ -116,6 +116,7 @@ section {
 	display: block;
 	height: 80px;
 	padding:5px;
+	position: relative;
 }
 
 .service-block {
@@ -158,4 +159,9 @@ section {
 }
 #profileFullName h2.name {
 	font-weight: bold;
+}
+.apply {
+	position: absolute;
+top: 12px;
+right: 95px;
 }
