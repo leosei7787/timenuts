@@ -46,17 +46,15 @@ ConfigProfils = [
 	},
 	{
 		"Email":"test@example.com",
-		"FirstName" : "Leo",
-		"LastName" : "Sei",
-		"Address" : "3 rue des jeuneurs,75002 Paris France",
-		"Image": "https://secure.gravatar.com/avatar/73d252f886f31843cf263b869e5bcef2",
-		"Involvement":545,
-		"TimeCredit":3,
-		"Headline" : "This is just me",
+		"FirstName" : "Gongon",
+		"LastName" : "Zi",
+		"Address" : "1 rue des jeuneurs,75002 Paris France",
+        "Image": "http://en.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b",
+		"Involvement":245,
+		"TimeCredit":1,
+		"Headline" : "This is just another me",
 		"Skills":[
 			"Web Application",
-			"English",
-			"French",
 			"House Keeping"
 		]
 	},
@@ -72,6 +70,8 @@ ConfigProfils = [
 		"Skills":[
 			"Web Application",
 			"French",
+            "English",
+            "Parcel Fetching",
 		],
         "Friends":[
             "sei7787@gmail.com"
@@ -156,6 +156,26 @@ ConfigServices = [
     "Skill" : "Python",
     "Geoloc" : False,
     "Requester" : "sei7787@gmail.com",
+},
+{
+    "Title" : "English lesson needed",
+    "Description" : "I reely dont nau haou to speek Englishe", 
+    "TimeNeeded" : 3,
+    "StartDate" : "2012-12-12",
+    "EndDate" : "2013-01-19",
+    "Skill" : "English",
+    "Geoloc" : False,
+    "Requester" : "augustin.riedinger@gmail.com",
+},
+{
+    "Title" : "Fetch a parcel for me please",
+    "Description": "AAAAAAAAA BBBBBBBBBBB CCCCCCCCCCCCCC",
+    "TimeNeeded" : 1,
+    "StartDate" : "2012-12-3",
+    "EndDate" : "2012-12-10",
+    "Skill" : "Parcel Fetching",
+    "Geoloc" : False,
+    "Requester": "test@example.com",
 },
 ]
 
