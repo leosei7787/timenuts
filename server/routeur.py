@@ -5,6 +5,7 @@ from server.models.skill import skill
 from server.models.skillstouser import skillstouser
 from server.models.service import service
 from server.models.category import category
+from server.models.comment import comment
 from server.models.serviceapplicants import serviceapplicants
 from google.appengine.ext.webapp.util import run_wsgi_app
 from datetime import *
@@ -195,11 +196,14 @@ class commentelement(webapp.RequestHandler):
 
 class comments(webapp.RequestHandler):
   def get(self):
-    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
     Path = self.request.path.split("/")
     Id = Path[ (len(Path)-1) ]
     Service = service.get_by_id(int(Id))
-    Comments = Service.Comments
+    Comments = []
+    CommentsId = Service.Comments
+    for Comment in CommentsId:
+      Comments.append( comment.get_by_id(Comment) )
+
     self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
     self.response.out.write( json.dumps([c.to_dict() for c in Comments]) )
 
@@ -247,6 +251,9 @@ class filltable (webapp.RequestHandler):
         query = skillstouser.all(keys_only=True)
         entries =query.fetch(1000)
         db.delete(entries)
+        query = comment.all(keys_only=True)
+        entries =query.fetch(1000)
+        db.delete(entries)
 
         # Store category & Skills
         for Category in ConfigCategories:
@@ -288,10 +295,20 @@ class filltable (webapp.RequestHandler):
             Geoloc = Service['Geoloc'],
             StartDate = datetime.strptime(Service['StartDate'],'%Y-%M-%d'),
             EndDate = datetime.strptime(Service['EndDate'],'%Y-%M-%d'),
+            Comments = []
           )
           if Service.has_key("Responder"):
             Responder = user.gql("WHERE Email='"+Service["Responder"]+"'").run().next()
             ser.Responder = Responder
+          if Service.has_key('Comments'):
+            for C in Service["Comments"]:
+              User = user.gql("WHERE Email='"+C["Owner"]+"'").run().next()
+              c  = comment(
+                Owner = User,
+                Comment = C["Comment"]
+              )
+              c.put()
+              ser.Comments.append(c.key().id())
           ser.put()
 
         # Service Applicants
