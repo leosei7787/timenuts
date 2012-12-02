@@ -3,6 +3,7 @@ service object
 """
 from server.models.user import user
 from server.models.skill import skill
+from server.models.category import category
 from google.appengine.ext import db
 import logging
 
@@ -31,10 +32,15 @@ class service(db.Model):
 
   def to_dict(self):
       tempdict1 = {
-        "Id": str(self.key()),
+        "Id": self.key().id(),
         "Title": self.Title,
         "Description": self.Description,
-        "Requester": str(self.Requester)
+        "Category" : self.Skill.Category,
+        "Skill" : self.Skill.Name,
+        "Requester": {
+          "Type":"Small",
+          "User":self.Requester.to_small_dict()
+          }
       }
       return tempdict1
 
