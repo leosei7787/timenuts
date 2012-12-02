@@ -21,6 +21,12 @@ def get_db_user(request, login):
     e = login.email()
     return user.gql("WHERE Email='%s'" % e).run(limit=1).next()
 
+def render_static_user_jsons(handler, t):
+    if t == "small": j = 'smalluser.json'
+    elif t == "full": j = 'fulluser.json'
+    path = os.path.join(os.path.split(__file__)[0], 'json/'+j)
+    handler.response.out.write(open(path, 'r').read())
+
 # Views
 
 class services(webapp.RequestHandler):
@@ -47,11 +53,14 @@ class services(webapp.RequestHandler):
       path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
       self.response.out.write(open(path, 'r').read())
 
-class userview(webapp.RequestHandler):
+class myuserview(webapp.RequestHandler):
     """View rendering the user jsons"""
     def get(self):
         t = self.request.get('Type')
-        if self.request.get("debug") == "True":
+        if t not in ['small', 'full']:
+            self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
+            return
+        if self.request.get("debug") != "True":
             Login = users.get_current_user()
             if Login:
                 u = get_db_user(self.request, Login)
@@ -60,19 +69,32 @@ class userview(webapp.RequestHandler):
                     self.response.out.write(json.dumps(u.to_small_dict()))
                 elif t == "full":
                     self.response.out.write(json.dumps(u.to_big_dict()))
-                else:
-                    self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
             else:
                 self.redirect(users.create_login_url(self.request.uri))
         else: # Things are working
-            if t == "small": j = 'smalluser.json'
-            elif t == "full": j = 'fulluser.json'
-            else:
-                self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
-                return
-            path = os.path.join(os.path.split(__file__)[0], 'json/'+j)
-            self.response.out.write(open(path, 'r').read())
+            render_static_user_jsons(self, t)
 
+class userview(webapp.RequestHandler):
+    """View rendering some user jsons"""
+    def get(self):
+        t = self.request.get('Type')
+        if t not in ['small', 'full']:
+            self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
+            return
+        try:
+            Id = int(self.request.get('Id'))
+        except ValueError:  # If int() not working
+            self.response.out.write("Error: GET parameter Id must be an integer")
+            return
+        if self.request.get("debug") == "True":
+            u = user.get_by_id(Id)
+            if t == "small":
+                d = u.to_small_dict()
+            else:
+                d = u.to_big_dict()
+            self.resposne.out.write(d)
+        else:
+            render_static_user_jsons(self, t)
         
 class login(webapp.RequestHandler):
     def get(self):
