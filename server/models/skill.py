@@ -8,3 +8,6 @@ class skill(db.Model):
   Name = db.StringProperty()
   Category = db.ReferenceProperty(category,
                                   required = True)
+
+
+  

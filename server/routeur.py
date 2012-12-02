@@ -31,7 +31,7 @@ def render_static_user_jsons(handler, t):
 
 class services(webapp.RequestHandler):
   def get(self):
-    if self.request.get("debug") == "True":
+    if self.request.get("debug") != "True":
       # get current user
       Login = users.get_current_user()
       if Login:
@@ -52,6 +52,16 @@ class services(webapp.RequestHandler):
     else:
       path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
       self.response.out.write(open(path, 'r').read())
+
+
+class serviceelement(webapp.RequestHandler):
+  def get(self):
+    Path = self.request.path.split("/")
+    Id = Path[ (len(Path)-1) ]
+    Service = service.get_by_id( int(Id) )
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    self.response.out.write( json.dumps( Service.to_dict() ) )
+
 
 class myuserview(webapp.RequestHandler):
     """View rendering the user jsons"""
