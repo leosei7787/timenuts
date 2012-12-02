@@ -17,6 +17,8 @@
 	<script>
 		var StartDate = "2012-12-02";
 		var EndDate = "2012-12-25";
+		var Skills = {};
+
 		$(function(){
 			$('#dp4').datepicker()
 				.on('changeDate', function(ev){
@@ -61,12 +63,37 @@
 		}
 
 		$("body").ready(function(){
-			console.log("mapping");
-					$("#FormSubmit").click(function(e){
-						console.log("Doing request");
-						request();
+				$("#FormSubmit").click(function(e){
+					request();
+				})
+				$.get("/data/skills",function(data){
+					Skills = data;
+					// fill Category
+					var cpt=0;
+					first = "";
+					$.each(Skills,function(cat,skills){
+						$("#Category").append("<option>"+cat+"</option>");
+						if(cpt == 0){
+							first = cat;
+						}
+						cpt++;
 					})
+					fill_skills(first);
+				})
+
+				$("#Category").change(function(){
+					cat = $("#Category option:selected").text();
+					fill_skills(cat);
+				})
+
 		});
+
+		var fill_skills=function(Cat){
+			$("#Skill").empty();
+			$.each(Skills[Cat],function(index,skill){
+				$("#Skill").append("<option>"+skill+"</option>")
+			})
+		}
 
 
 	</script>
@@ -95,10 +122,6 @@
 				   </div>
 				   <div class="controls">
 					   <select id="Category" name="Category" placeholder="Categories">
-						  <option>Languages</option>
-						  <option>Computer Science</option>
-						  <option>House Care</option>
-						  <option>Personal Service</option>
 						</select>
 					</div>
 				 </div>	
