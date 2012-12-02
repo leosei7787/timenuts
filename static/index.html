@@ -22,7 +22,7 @@
 
 	<script type="text/template" id="tpl-menu">
 	<header>
-		<nav><div id="logo"><h3>Logo</h3></div></nav>
+	<nav><div id="logo"><h3>Logo</h3></div></nav>
 	</header>
 	</script>
 	<section>
@@ -68,28 +68,38 @@
 							</li>
 						</tr>
 					</thead>
-								<script type="text/template" id="tpl-service">
-									<div class="sub-service service-avatar">
-										<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=64" class="img-rounded" /> 
-									</div>
-									<div class="sub-service service-content">
-										<p class="service-title"><strong>Adrian Gonzy</strong>
-											Manual > Building</p>
-										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
-									</div>
-									<div class="sub-service service-info">
-										<span>1</span>
-										<img src="img/1354379904_NeedleLeftYellow2.png"/>
-									</div>
-								</script>
-					</table>
+					<script type="text/template" id="tpl-service">
+					<div class="sub-service service-avatar">
+					<img src="<%=User.Image %>?s=64" class="img-rounded" /> 
+					</div>
+					<div class="sub-service service-content">
+					<p class="service-title"><strong><%= User.FirstName %> <%= User.SurName %></strong>
+					<%=Category %> > <%=Skill %></p>
+					<small class="service-chapeau"><%= Title %></small>
+					</div>
+					<div class="sub-service service-info">
+					<% if(Icons.Friends == "True") {%>
+						<span>Friend</span>
+						<%}%>
+					<% if(Icons.FriendsOfFriends == "True") {%>
+						<span>Friend of a Friend</span>
+					<%}%>
+					<% if(Icons.Geoloc == "True") {%>
+						<span>Near you</span>
+					<%}%>
+					<% if(Icons.Time == "True") {%>
+						<span>Urgent</span>
+					<%}%>
+							</div>
+							</script>
+						</table>
+					</div>
 				</div>
-			</div>
 
-		</section>
+			</section>
 
-		<script type="text/javascript" src="js/models.js"></script>
-		<script type="text/javascript" src="js/views.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
-	</body>
-	</html>
+			<script type="text/javascript" src="js/models.js"></script>
+			<script type="text/javascript" src="js/views.js"></script>
+			<script type="text/javascript" src="js/main.js"></script>
+		</body>
+		</html>
