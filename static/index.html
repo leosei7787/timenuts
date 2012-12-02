@@ -25,7 +25,7 @@
 </head>
 <body>
 	<script type="text/template" id="tpl-menu">
-			<nav><div id="logo"><h3>Logo</h3></div></nav><div id="content"></div>
+			<nav><div id="logo"><h3><a href="#"></a></h3></div></nav><div id="content"></div>
 	</script>
 
 	<script type="text/template" id="tpl-feed-skeleton">
@@ -64,7 +64,7 @@
 
 	<script type="text/template" id="tpl-small-me">
 		<img src="<%=Image %>?s=64" class="img-rounded"/>
-		<span><%= FirstName %> <%= LastName %>
+		<span><a href="#!profile/me"><%= FirstName %> <%= LastName %></a>
 		</span>
 		<div id="scores">
 			<ul>
@@ -84,7 +84,7 @@
 			<img src="<%=Requester.User.Image %>?s=64" class="img-rounded" /> 
 		</div>
 		<div class="sub-service service-content">
-			<p class="service-title"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong>
+			<p class="service-title"><a href="#!/profile/<%= Requester.User.Id %>"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong></a>
 				<%=Category %> > <%=Skill %></p>
 				<small class="service-chapeau"><%= Title %></small>
 			</div>

@@ -68,7 +68,7 @@ window.ServicesView = Backbone.View.extend({
 	}
 });
 
-window.UserSmallView = Backbone.View.extend({
+window.MeSmallView = Backbone.View.extend({
 	id : 'small-me',
 	className : 'block',
 	template : _.template($('#tpl-small-me').html()),
@@ -85,9 +85,9 @@ window.UserSmallView = Backbone.View.extend({
 	}
 });
 
-window.UserFullView = Backbone.View.extend({
+window.MeFullView = Backbone.View.extend({
 	id : 'tpl-main-user-data',
-	className : 'section',
+	tagName : 'section',
 	template : _.template($('#tpl-main-user-data').html()),
 	initialize : function() {
 		this.model.on('change',this.render,this);
