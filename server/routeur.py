@@ -15,19 +15,9 @@ from google.appengine.ext import db
 
 # Wrappers and utilities
 
-def login_required(fn):
-    """Decorator so that fn (which is a class function like get) is sent to a create login page if user is not logged"""
-    def wrapped(obj):
-        Login = users.get_current_user()
-        if Login:
-            return fn(obj)
-        else:
-            obj.redirect(users.create_login_url(obj.request.uri))
-    return wrapped
-
 def get_db_user(request, login):
     """Gets the user as in the db model from the user from request usermail (when user logged in)."""
-    if 'localhost' in request
+    e = login.email()
     return user.gql("WHERE Email='%s'" % e).run(limit=1).next()
 
 # Views
@@ -59,19 +49,30 @@ class services(webapp.RequestHandler):
 
 class userview(webapp.RequestHandler):
     """View rendering the user jsons"""
-    @login_required
     def get(self):
-        self.response.out.write(self.request.url)
-        Login = users.get_current_user()
-        u = get_db_user(self.request, Login)
-        # GET parameter
         t = self.request.get('Type')
-        if t == "small":
-            self.response.out.write(json.dumps(u.to_small_dict()))
-        elif t == "full":
-            self.response.out.write(json.dumps(u.to_big_dict()))
-        else:
-            self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
+        if self.request.get("debug") == "True":
+            Login = users.get_current_user()
+            if Login:
+                u = get_db_user(self.request, Login)
+                # GET parameter
+                if t == "small":
+                    self.response.out.write(json.dumps(u.to_small_dict()))
+                elif t == "full":
+                    self.response.out.write(json.dumps(u.to_big_dict()))
+                else:
+                    self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
+            else:
+                self.redirect(users.create_login_url(self.request.uri))
+        else: # Things are working
+            if t == "small": j = 'smalluser.json'
+            elif t == "full": j = 'fulluser.json'
+            else:
+                self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
+                return
+            path = os.path.join(os.path.split(__file__)[0], 'json/'+j)
+            self.response.out.write(open(path, 'r').read())
+
         
 class login(webapp.RequestHandler):
     def get(self):
