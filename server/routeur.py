@@ -197,6 +197,17 @@ class filltable (webapp.RequestHandler):
             EndDate = datetime.strptime(Service['EndDate'],'%Y-%M-%d')
             ).put()
 
+        # Service Applicants
+        for SAppl in ServiceApplicants:
+            # FK
+            Service = service.gql("WHERE Title='%s'" % SAppl['Service']).run().next()
+            Applicant = user.gql("WHERE Email='%s'" % SAppl['Applicant']).run().next()
+            serviceapplicants(
+                Date = datetime.strptime(SAppl['Date'], '%Y-%M-%d'),
+                Service = Service,
+                Applicant = Applicant
+            ).put()
+
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.write("Done")
 

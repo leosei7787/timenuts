@@ -55,7 +55,7 @@ Profils = [
 			"French",
 			"House Keeping"
 		]
-	}
+	},
 ]
 
 Services = [
@@ -70,6 +70,12 @@ Services = [
 	"Requester":"test@example.com"
 }
 
-
 ]
 
+ServiceApplicants = [
+    {
+        "Service" : "Garden my plants",
+        "Applicant" : "sei7787@gmail.com",
+        "Date" : "2012-12-04"
+    }
+]
