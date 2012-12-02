@@ -15,11 +15,9 @@
 		<script type="text/javascript" src="/libs/bootstrap-datepicker.js"></script>
 		
 	<script>
+		var StartDate = "2012-12-02";
+		var EndDate = "2012-12-25";
 		$(function(){
-			
-			$('#dp3').datepicker();
-			var startDate = new Date(2012,1,20);
-			var endDate = new Date(2012,1,25);
 			$('#dp4').datepicker()
 				.on('changeDate', function(ev){
 					if (ev.date.valueOf() > endDate.valueOf()){
@@ -28,7 +26,7 @@
 						$('#alert').hide();
 						startDate = new Date(ev.date);
 						$('#startDate').text($('#dp4').data('date'));
-						$('#StartDate').value($('#dp4').data('date'));
+						StartDate = $('#dp4').data('date');					
 					}
 					$('#dp4').datepicker('hide');
 				});
@@ -40,16 +38,42 @@
 						$('#alert').hide();
 						endDate = new Date(ev.date);
 						$('#endDate').text($('#dp5').data('date'));
-						$('#EndDate').value($('#dp5').data('date'));
+						EndDate = $('#dp5').data('date');
 					}
 					$('#dp5').datepicker('hide');
 				});
 		});
+
+		var request = function(){
+			$.post("/data/service/",{
+				StartDate:StartDate,
+				EndDate:EndDate,
+				Description:$("#Description").attr("value"),
+				Title:$("#Title").attr("value"),
+				TimeNeeded:$("#TimeNeeded option:selected").text(),
+				Skill:$("#Skill option:selected").text(),
+				Geoloc:$("#Geoloc").is(':checked')?true:false
+			},
+			function(data){
+				window.location = "/";
+			}
+			)
+		}
+
+		$("body").ready(function(){
+			console.log("mapping");
+					$("#FormSubmit").click(function(e){
+						console.log("Doing request");
+						request();
+					})
+		});
+
+
 	</script>
 	</head>
 	<body>
 		<section class="request-form">
-			<form class="form-horizontal" action="/data/service" method="POST">
+			<div class="form-horizontal" id="requestService">
 				<div class="control-group">
 				    <div class="controls">
 				       <h1>Make Your Request</h1>
@@ -117,8 +141,6 @@
 							</td> <!-- todo send date in input  -->
 							<th>End date<a href="#" class="btn small" id="dp5" data-date-format="yyyy-mm-dd" data-date="2012-02-25">Change</a></th>
 							<td id="endDate">2012-02-25</td>
-							<input type="hidden" id="StartDate" name="StartDate" />
-							<input type="hidden" id="EndDate" name="EndDate"3 />
 						</table>
 					</div>
 				</div>
@@ -146,147 +168,12 @@
 			    </div>
 			   </div>
 				<div class="form-actions">
-				  <button type="submit" class="btn btn-primary">Save changes</button>
+				  <button type="submit" class="btn btn-primary" id="FormSubmit">Save changes</button>
 				  <button type="button" class="btn">Cancel</button>
 				</div>
 			  </div>
-			</form>
+			</div>
 		</section>
-		
-		<a type="button" class="btn" style="width:100%;" href="#test_modal" data-toggle="modal">PopUp</a>
-		
-		
-		<div class="modal fade" id="test_modal">
-		  <div class="modal-header">
-		    <a class="close" data-dismiss="modal">&times;</a>
-		    <h3>Make Request</h3>
-		  </div>
-		  <div class="modal-body">
-		    <section class="request-form popup">
-			<form class="form-horizontal">
-			  <div class="control-group">
-			    <div class="controls">
-			      <input type="text" id="Title" placeholder="Subject">
-			    </div>
-			   </div>
-			  <div class="control-group">
-			    <div class="controls">
-			    	<textarea rows="3" id="Description" placeholder="Description"></textarea>
-			    </div>
-			  </div>
-			  <div class="control-group">
-			    <div class="controls">
-			     <label class="">
-			     	 <h5 class="geoloc-title">Is the request geolocalized ?</h5>
- 					 <input type="checkbox" id="Geoloc" value="Geoloc">
-				 </label>
-			    </div>
-			  </div>
-<!-- 			  <div class="control-group"> -->
-<!-- 			    <div class="controls"> -->
-<!-- 			     <label class="checkbox inline"> -->
-<!--  					 <input type="checkbox" id="Geoloc" value="Geoloc"> URGENT -->
-<!-- 				 </label> -->
-<!-- 			    </div> -->
-<!-- 			  </div> -->
-			    <div class="control-group">
-				     <div class="controls">
-					       <h5>Deadeline ?</h5>
-					   </div>
-				   	 <div class="controls">
-					   <table class="request-table-date">
-						<thead>
-							<tr>
-								<th>Start date<a href="#" class="btn small" id="dp4" data-date-format="yyyy-mm-dd" data-date="2012-02-20">Change</a></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td id="startDate">2012-02-20</td>
-							</tr>
-						</tbody
-						<thead>
-							<tr>
-								<th>End date<a href="#" class="btn small" id="dp5" data-date-format="yyyy-mm-dd" data-date="2012-02-25">Change</a></th>
-							</tr>
-						</thead>					
-						<tbody>
-							<tr>
-								<td id="endDate">2012-02-25</td>
-							</tr>
-						</tbody>
-						
-					</table>
-					</div>
-				</div>
-			   
-				<div class="control-group">
-					<div class="controls">
-				     	<h5>How long may it take ?</h5>
-				    </div>
-				   <div class="controls">
-					   <select class="span1" id="TimeNeeded" placeholder="Estimated time needed">
-						  <option>1h</option>
-						  <option>2h</option>
-						  <option>3h</option>
-						  <option>4h</option>
-						  <option>5h</option>
-						</select>
-					</div>
-				 </div>	
-				 <div class="control-group">
-				   <div class="controls">
-				       <h5>Which skill category is suited for this request ?</h5>
-				   </div>
-				   <div class="controls">
-					   <select id="Category" placeholder="Categories">
-						  <option>Languages</option>
-						  <option>Computer Science</option>
-						  <option>House Care</option>
-						  <option>Personal Service</option>
-						</select>
-					</div>
-				 </div>	
-				 <div class="control-group">
-					 <div class="controls">
-				       <h5>Which skills may be needed ?</h5>
-				 	  </div>
-				   <div class="controls">
-					   <select id="Skill" placeholder="Skills">
-						  <option>English</option>
-						  <option>Spannish</option>
-						  <option>French</option>
-						  <option>Russian</option>
-						  
-						  <option>Algorithm</option>
-						  <option>Java</option>
-						  <option>Web Application</option>
-						  <option>C++</option>
-						  
-						  <option>Gardening</option>
-						  <option>Plumbing</option>
-						  <option>Electricity</option>
-						  <option>cleaning</option>
-						  <option>House Keeping</option>
-						  
-						  <option>Baby sitting</option>
-						  <option>Parcel Fetching</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-actions">
-				  <button type="submit" class="btn btn-primary">Save changes</button>
-				  <button type="button" class="btn">Cancel</button>
-				</div>
-			  </div>
-			</form>
-		</section>
-		  </div>
-		  <div class="modal-footer">
-		    <a href="#" class="btn" data-dismiss="modal">Close</a>
-		    <a href="#" class="btn btn-primary">Save Changes</a>
-		  </div>
-		</div>
 		
 	</body>
 </html>
