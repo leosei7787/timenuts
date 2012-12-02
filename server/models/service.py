@@ -23,6 +23,8 @@ class service(db.Model):
   Responder = db.ReferenceProperty(user, collection_name="applied_services")
   Attachments = db.StringListProperty()
   Comments = db.ListProperty(db.Key)
+  CreatedTime = db.DateTimeProperty(auto_now_add=True)
+  ModifiedTime = db.DateTimeProperty(auto_now_add=True)
 
   #@property
   #Category = 
@@ -35,12 +37,20 @@ class service(db.Model):
         "Id": self.key().id(),
         "Title": self.Title,
         "Description": self.Description,
-        "Category" : self.Skill.Category,
+        #"Category" : self.Skill.Category.Name,
         "Skill" : self.Skill.Name,
+        "StartDate" : self.StartDate.strftime("%Y-%m-%d %H:%M:%S"),
+        "EndDate" : self.EndDate.strftime("%Y-%m-%d %H:%M:%S"),
         "Requester": {
           "Type":"Small",
           "User":self.Requester.to_small_dict()
-          }
+          },
+        "Grade" : self.Grade,
+        "TimeNeeded": self.TimeNeeded,
+        "Done" : "false",
+        "Feedback":self.Feedback,
+        "CreatedTime":self.CreatedTime.strftime("%Y-%m-%d %H:%M:%S"),
+        "ModifiedTime" :self.ModifiedTime.strftime("%Y-%m-%d %H:%M:%S")
       }
       return tempdict1
 

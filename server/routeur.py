@@ -79,7 +79,7 @@ class login(webapp.RequestHandler):
           if q.count() == 0:
               u= user(ForeName = "",
                   SureName = "",
-                  Email = login.email(),
+                  Email = Login.email(),
                   ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
                   Headline = 'Awesomness',
                   TimeCredit = random.randint(0,10),
