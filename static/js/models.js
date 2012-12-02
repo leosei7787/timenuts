@@ -39,3 +39,27 @@ window.UserFull = Backbone.Model.extend({
 		return '/data/user?Id='+this.get('id')+'&Type=full'
 	}
 });
+
+window.UserDoneservices = Backbone.Collection.extend({
+	model : Service,
+	url : function() {
+		console.log(this);
+		return '/data/doneservices/'+this.userid;
+	},
+	initialize : function() {
+		this.userid = '';
+
+		// this.userid = this.options.get(userid);
+	}
+});
+
+window.UserRequests = Backbone.Collection.extend({
+	model : Service,
+	url : function() {
+		return	'/data/requests/'+this.userid;
+	},
+	initialize : function() {
+		this.userid = '';
+		// this.userid = this.options.get(userid);
+	}
+});

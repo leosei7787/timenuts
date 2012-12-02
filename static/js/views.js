@@ -90,10 +90,7 @@ window.HistoryservicesView = Backbone.View.extend({
 		$(this.el).html(this.template({
 			title : this.options.title
 		}));
-		console.log('je render'+this.options.title);
 		if (this.collection.length) {
-			console.log('je render et je passe ici');
-			console.log(this.collection.length);
 			_.each(this.collection.models,function(service,index) {
 				$(this.el).find('tbody').append('<tr><td class="service" id="'+this.options.title.split(' ')[0]+'-'+index+'"></td></tr>');
 				$(this.el).find('#'+this.options.title.split(' ')[0]+'-'+index).append(new ServiceView({
@@ -105,33 +102,12 @@ window.HistoryservicesView = Backbone.View.extend({
 			$(this.el).find('.service').html(new LoadingView({}).render().el);
 
 		}
+		$('#right-col').append($(this.el));
+
 		return this;
 	}
 });
 
-window.RequestsView = Backbone.View.extend({
-	tagName : 'tbody',
-	initialize : function() {
-		this.collection.on('reset',this.render,this);
-		this.collection.view = this;
-	},
-	render : function(eventName) {
-		$(this.el).empty();
-		if (this.collection.length) {
-			_.each(this.collection.models,function(service,index) {
-				$(this.el).append('<tr><td class="service" id="service-'+index+'"></td></tr>');
-				$(this.el).find('#service-'+index).append(new ServiceView({
-					model : service
-				}).render().el);
-			},this);
-		} else {
-			$(this.el).html('<tr><td class="service"></td></tr>');
-			$(this.el).find('.service').html(new LoadingView({}).render().el);
-
-		}
-		return this;
-	}
-});
 
 window.MeSmallView = Backbone.View.extend({
 	id : 'small-me',
