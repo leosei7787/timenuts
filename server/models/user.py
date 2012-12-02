@@ -43,5 +43,5 @@ class user(db.Model):
     d['Email'] = self.Email
     d['Headline'] = self.Headline
     from server.models.award import award
-    d.Awards = [award.get_by_id(x.id()).Name for x in self.Awards]
+    d['Awards'] = [award.get_by_id(x.id()).Name for x in self.Awards]
     return d

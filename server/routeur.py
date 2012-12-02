@@ -13,7 +13,7 @@ import logging
 import json
 from google.appengine.ext import db
 
-# Wrapper(s) and utilities
+# Wrappers and utilities
 
 def login_required(fn):
     """Decorator so that fn (which is a class function like get) is sent to a create login page if user is not logged"""
@@ -25,9 +25,9 @@ def login_required(fn):
             obj.redirect(users.create_login_url(obj.request.uri))
     return wrapped
 
-def get_db_user(request):
-    """Gets the user as in the db model from the user from request usermail"""
-    return user.gql("WHERE Email='%s'" % request.get("usermail")).run(limit=1).next()
+def get_db_user(login):
+    """Gets the user as in the db model from the user from request usermail (when user logged in)."""
+    return user.gql("WHERE Email='%s'" % login.email()).run(limit=1).next()
 
 # Views
 
@@ -60,7 +60,8 @@ class userview(webapp.RequestHandler):
     """View rendering the user jsons"""
     @login_required
     def get(self):
-        u = get_db_user(self.request)
+        Login = users.get_current_user()
+        u = get_db_user(Login)
         # GET parameter
         t = self.request.get('Type')
         if t == "small":
@@ -68,7 +69,7 @@ class userview(webapp.RequestHandler):
         if t == "full":
             self.response.out.write(json.dumps(u.to_big_dict()))
         else:
-            self.reqponse.out.write("Error: Type GET parameter is taking values in ['small', 'big']")
+            self.response.out.write("Error: Type GET parameter is taking values in ['small', 'full']")
         
 class login(webapp.RequestHandler):
     def get(self):
