@@ -52,7 +52,7 @@
 				EndDate:EndDate,
 				Description:$("#Description").attr("value"),
 				Title:$("#Title").attr("value"),
-				TimeNeeded:$("#TimeNeeded option:selected").text(),
+				TimeNeeded:$("#TimeNeeded").attr("value"),
 				Skill:$("#Skill option:selected").text(),
 				Geoloc:$("#Geoloc").is(':checked')?true:false
 			},
@@ -131,24 +131,6 @@
 				 	  </div>
 				   <div class="controls">
 					   <select id="Skill" name="Skill" placeholder="Skills">
-						  <option>English</option>
-						  <option>Spannish</option>
-						  <option>French</option>
-						  <option>Russian</option>
-						  
-						  <option>Algorithm</option>
-						  <option>Java</option>
-						  <option>Web Application</option>
-						  <option>C++</option>
-						  
-						  <option>Gardening</option>
-						  <option>Plumbing</option>
-						  <option>Electricity</option>
-						  <option>cleaning</option>
-						  <option>House Keeping</option>
-						  
-						  <option>Baby sitting</option>
-						  <option>Parcel Fetching</option>
 						</select>
 					</div>
 				</div>
@@ -169,16 +151,10 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-				     	<h5>How long may it take ?</h5>
+				     	<h5>How long it may take ?</h5>
 				    </div>
 				   <div class="controls">
-					   <select class="span1" id="TimeNeeded" name="TimeNeeded" placeholder="Estimated time needed">
-						  <option>1</option>
-						  <option>2</option>
-						  <option>3</option>
-						  <option>4</option>
-						  <option>5</option>
-						</select>
+						  <input type="number" id="TimeNeeded" name="TimeNeeded" class="span1" min="1"> Hour(s)
 					</div>
 				 </div>		
 				 			 
