@@ -4,6 +4,10 @@ body {
 	padding: 0;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
 .loading {
 	width: 100%;
 	text-align: center;
