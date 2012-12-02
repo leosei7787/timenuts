@@ -96,6 +96,19 @@ class userview(webapp.RequestHandler):
         else:
             render_static_user_jsons(self, t)
         
+class skills(webapp.RequestHandler):
+  def get(self):
+    Skills = skill.all().run()
+    Cat = {}
+    for Skill in Skills:
+      if Skill.Category.Name not in Cat:
+        Cat[Skill.Category.Name] = []
+
+      Cat[Skill.Category.Name].append(Skill.Name)
+
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    self.response.out.write( json.dumps(Cat) )
+
 class login(webapp.RequestHandler):
     def get(self):
         Login = users.get_current_user()
@@ -143,14 +156,14 @@ class filltable (webapp.RequestHandler):
         db.delete(entries)
 
         # Store category & Skills
-        for Category in Categories:
+        for Category in ConfigCategories:
           c = category(Name=Category)
           c.put()
-          for Skill in Categories[Category]:
+          for Skill in ConfigCategories[Category]:
             skill(Name=Skill,Category=c).put()
 
         # Define profiles + link to Skills
-        for User in Profils:
+        for User in ConfigProfils:
           u =  user(FirstName = User['FirstName'],
             LastName = User['LastName'],
             Email = User['Email'],
@@ -168,7 +181,7 @@ class filltable (webapp.RequestHandler):
             skillstouser(Skill=s,User=u).put()  
 
         #Service
-        for Service in Services:
+        for Service in ConfigServices:
           ## all FK needed
           User = user.gql("WHERE Email='"+Service["Requester"]+"'").run().next()
           Skill = skill.gql("WHERE Name='"+Service["Skill"]+"'").run().next()

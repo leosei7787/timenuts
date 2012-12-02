@@ -1,4 +1,4 @@
-Categories = {
+ConfigCategories = {
 	"Computer Science":[
 		"Algorithm",
 		"Java",
@@ -24,7 +24,7 @@ Categories = {
 	]
 }
 
-Profils = [
+ConfigProfils = [
 	{
 		"Email":"sei7787@gmail.com",
 		"FirstName" : "Leo",
@@ -58,7 +58,7 @@ Profils = [
 	}
 ]
 
-Services = [
+ConfigServices = [
 {
 	"Title" : "Garden my plants",
 	"Description" : "I'll be out for a week, could you water my plants",
