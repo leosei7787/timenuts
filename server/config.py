@@ -56,6 +56,20 @@ ConfigProfils = [
 			"House Keeping"
 		]
 	},
+	{
+		"Email":"alexandre.hajjar@gmail.com",
+		"FirstName" : "Alex",
+		"LastName" : "Hajjar",
+		"Address" : "1 rue Waikiki, Honolulu",
+        "Image": "http://en.gravatar.com/avatar/c4855961632635e313ced8253004558b",
+		"Involvement":823,
+		"TimeCredit":14,
+        "Headline" : ":P",
+		"Skills":[
+			"Web Application",
+			"French",
+		]
+	},
 ]
 
 ConfigServices = [
@@ -67,15 +81,29 @@ ConfigServices = [
 	"EndDate" : "2013-01-03",
 	"Skill" : "House Keeping",
 	"Geoloc" : True,
-	"Requester":"test@example.com"
+    "Requester" : "alexandre.hajjar@gmail.com"
+},
+{
+    "Title" : "AngelHack",
+    "Description" : "Make an awesome web app, win, get thousands, get fame, get billions, retire.",
+    "TimeNeeded" : 24,
+    "StartDate" : "2012-10-01",
+    "EndDate" : "2012-12-02",
+    "Skill" : "Web Application",
+    "Geoloc" : True,
+    "Requester": "sei7787@gmail.com",
 }
-
 ]
 
 ServiceApplicants = [
     {
         "Service" : "Garden my plants",
-        "Applicant" : "sei7787@gmail.com",
+        "Applicant" : "test@example.com",
         "Date" : "2012-12-04"
+    },
+    {
+        "Service" : "AngelHack",
+        "Applicant" : "alexandre.hajjar@gmail.com",
+        "Date" : "2012-11-01"
     }
 ]

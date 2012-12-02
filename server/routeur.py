@@ -101,8 +101,8 @@ class myapplying(webapp.RequestHandler):
       if Login:
         u = get_db_user(self.request, Login)
         servapps = serviceapplicants.gql("WHERE Applicant = :1", u)
-        ApplicantsDict = [servapp.Applicant.to_dict() for servapp in servapps]
-        self.response.out.write(json.dumps(ApplicantsDict))
+        ApplyingDict = [servapp.Service.to_dict() for servapp in servapps]
+        self.response.out.write(json.dumps(ApplyingDict))
       else:
         self.redirect(users.create_login_url(self.request.uri))
 
