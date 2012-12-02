@@ -7,6 +7,7 @@ from server.models.category import category
 from google.appengine.ext import db
 import logging
 import datetime
+from google.appengine.api import users
 
 # Data Model
 class service(db.Model):
@@ -34,32 +35,32 @@ class service(db.Model):
     return self.Skill.Category.get()
 
   def to_dict(self):
-      tempdict1 = {
-        "Id": self.key().id(),
-        "Title": self.Title,
-        "Description": self.Description,
-        "Category" : self.Skill.Category.Name,
-        "Skill" : self.Skill.Name,
-        "StartDate" : self.StartDate.strftime("%Y-%m-%d %H:%M:%S"),
-        "EndDate" : self.EndDate.strftime("%Y-%m-%d %H:%M:%S"),
-        "Requester": {
-          "Type":"Small",
-          "User":self.Requester.to_small_dict()
-          },
-        "Grade" : self.Grade,
-        "TimeNeeded": self.TimeNeeded,
-        "Done" : "false",
-        "Feedback":self.Feedback,
-        "CreatedTime":self.CreatedTime.strftime("%Y-%m-%d %H:%M:%S"),
-        "ModifiedTime" :self.ModifiedTime.strftime("%Y-%m-%d %H:%M:%S"),
-        "Address" : self.Requester.Address,
-        "Icons":{
-          "Geoloc": "True" if self.Requester.Address else "False" ,
-          "Friends" :  "True",
-          "Time": "True" if (self.EndDate - self.StartDate) < datetime.timedelta(days=7) else "False",
-          "FriendsofFriends":"False"
-
-        }
-      }
-      return tempdict1
+    tempdict1 = {
+      "Id": self.key().id(),
+      "Title": self.Title,
+      "Description": self.Description,
+      "Category" : self.Skill.Category.Name,
+      "Skill" : self.Skill.Name,
+      "StartDate" : self.StartDate.strftime("%Y-%m-%d %H:%M:%S"),
+      "EndDate" : self.EndDate.strftime("%Y-%m-%d %H:%M:%S"),
+      "Requester": {
+        "Type":"Small",
+        "User":self.Requester.to_small_dict()
+        },
+      "Grade" : self.Grade,
+      "TimeNeeded": self.TimeNeeded,
+      "Done" : "false",
+      "Feedback":self.Feedback,
+      "CreatedTime":self.CreatedTime.strftime("%Y-%m-%d %H:%M:%S"),
+      "ModifiedTime" :self.ModifiedTime.strftime("%Y-%m-%d %H:%M:%S"),
+      "Address" : self.Requester.Address,
+      "Icons":{
+        "Geoloc": "True" if self.Requester.Address else "False" ,
+        "Friends" :  "True",
+        "Time": "True" if (self.EndDate - self.StartDate) < datetime.timedelta(days=7) else "False",
+        "FriendsofFriends":"False"
+      },
+      "Applied":False
+    }
+    return tempdict1
 

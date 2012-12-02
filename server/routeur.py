@@ -57,8 +57,17 @@ class services(webapp.RequestHandler):
           for Service in LindedServices:
             Services.append(Service)
 
+        ServicesDump = []
+        for p in Services:
+            temp = p.to_dict()
+            u = user.gql("WHERE Email='"+Email+"'" ).run(limit=1).next()
+            s = service.get_by_id(temp["Id"])
+            servapps = serviceapplicants.gql("WHERE Applicant=:1 AND Service=:2", u, s).count()
+            temp["Applied"] = True if servapps > 0 else False
+            ServicesDump.append(temp)
+
         self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
-        self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
+        self.response.out.write( json.dumps( ServicesDump) )
       else:
         self.redirect(users.create_login_url(self.request.uri))
     else:
