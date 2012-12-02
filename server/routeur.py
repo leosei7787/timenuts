@@ -33,10 +33,10 @@ class services(webapp.RequestHandler):
 
         self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
       else:
-          self.redirect(users.create_login_url(self.request.uri))
+        self.redirect(users.create_login_url(self.request.uri))
     else:
-        path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
-        self.response.out.write(open(path, 'r').read())
+      path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
+      self.response.out.write(open(path, 'r').read())
         
 class login(webapp.RequestHandler):
     def get(self):
