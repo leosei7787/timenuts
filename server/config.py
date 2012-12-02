@@ -92,7 +92,18 @@ ConfigServices = [
     "Skill" : "Web Application",
     "Geoloc" : True,
     "Requester": "sei7787@gmail.com",
-}
+},
+{
+    "Title" : "Talk French to make some noise",
+    "Description": "This is stupid",
+    "TimeNeeded" : 3,
+    "StartDate" : "2012-09-02",
+    "EndDate" : "2012-09-26",
+    "Skill" : "French",
+    "Geoloc" : True,
+    "Requester" : "test@example.com",
+    "Responder" : "alexandre.hajjar@gmail.com",
+},
 ]
 
 ServiceApplicants = [

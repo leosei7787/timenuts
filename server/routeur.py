@@ -17,6 +17,16 @@ from server.config import *
 
 # Wrappers and utilities
 
+def login_required(fn):
+    def wrapper(obj):
+        Login = users.get_current_user()
+        if Login:
+            fn(obj)
+        else:
+            obj.redirect(users.create_login_url(obj.request.uri))
+    return wrapper
+
+
 def get_db_user(request, login):
     """Gets the user as in the db model from the user from request usermail (when user logged in)."""
     e = login.email()
@@ -85,6 +95,7 @@ class serviceelement(webapp.RequestHandler):
 
 class myuserview(webapp.RequestHandler):
     """View rendering the user jsons"""
+    @login_required
     def get(self):
         t = self.request.get('Type')
         if t not in ['small', 'full']:
@@ -92,15 +103,12 @@ class myuserview(webapp.RequestHandler):
             return
         self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
         Login = users.get_current_user()
-        if Login:
-            u = get_db_user(self.request, Login)
-            # GET parameter
-            if t == "small":
-                self.response.out.write(json.dumps(u.to_small_dict()))
-            elif t == "full":
-                self.response.out.write(json.dumps(u.to_big_dict()))
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
+        u = get_db_user(self.request, Login)
+        # GET parameter
+        if t == "small":
+            self.response.out.write(json.dumps(u.to_small_dict()))
+        elif t == "full":
+            self.response.out.write(json.dumps(u.to_big_dict()))
 
 class userview(webapp.RequestHandler):
     """View rendering some user jsons"""
@@ -120,24 +128,37 @@ class userview(webapp.RequestHandler):
             d = u.to_small_dict()
         else:
             d = u.to_big_dict()
-        self.resposne.out.write(d)
+        self.response.out.write(d)
 
 class myapplying(webapp.RequestHandler):
+  @login_required
   def get(self):
       # get current user
       Login = users.get_current_user()
       self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
-      if Login:
-        u = get_db_user(self.request, Login)
-        servapps = serviceapplicants.gql("WHERE Applicant = :1", u)
-        ApplyingDict = [servapp.Service.to_dict() for servapp in servapps]
-        self.response.out.write(json.dumps(ApplyingDict))
-      else:
-        self.redirect(users.create_login_url(self.request.uri))
+      u = get_db_user(self.request, Login)
+      servapps = serviceapplicants.gql("WHERE Applicant=:1", u)
+      ApplyingDict = [servapp.Service.to_dict() for servapp in servapps]
+      self.response.out.write(json.dumps(ApplyingDict))
 
-class donservices(webapp.RequestHandler):
-    pass
+class mydoneservices(webapp.RequestHandler):
+    @login_required
+    def get(self):
+        Login = users.get_current_user()
+        self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+        u = get_db_user(self.request, Login)
+        self.response.out.write(
+            json.dumps([s.to_dict() for s in service.gql("WHERE Responder=:1", u)]))
         
+class myrequests(webapp.RequestHandler):
+    @login_required
+    def get(self):
+        Login = users.get_current_user()
+        self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+        u = get_db_user(self.request, Login)
+        self.response.out.write(
+            json.dumps([s.to_dict() for s in service.gql("WHERE Requester=:1", u)]))
+
 class skills(webapp.RequestHandler):
   def get(self):
     Skills = skill.all().run()
@@ -152,27 +173,25 @@ class skills(webapp.RequestHandler):
     self.response.out.write( json.dumps(Cat) )
 
 class login(webapp.RequestHandler):
+    @login_required
     def get(self):
         Login = users.get_current_user()
-        if Login:
-          q = user.gql('WHERE Email=\''+Login.email()+'\'')
-          if q.count() == 0:
-              u= user(FirstName = "",
-                  LastName = "",
-                  Email = Login.email(),
-                  Image = 'http://nfs-tr.com/images/avatars/003.png',
-                  Headline = 'Awesomness',
-                  TimeCredit = random.randint(0,10),
-                  Involvement = random.randint(0,1000),
-                  Awards = []
-                  )
-              u.put()
-            
-            
-          self.response.headers['Content-Type'] = 'text/plain'
-          self.response.out.write('Hello, ' + Login.email())
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
+        q = user.gql('WHERE Email=\''+Login.email()+'\'')
+        if q.count() == 0:
+            u= user(FirstName = "",
+                LastName = "",
+                Email = Login.email(),
+                Image = 'http://nfs-tr.com/images/avatars/003.png',
+                Headline = 'Awesomness',
+                TimeCredit = random.randint(0,10),
+                Involvement = random.randint(0,1000),
+                Awards = []
+                )
+            u.put()
+          
+          
+        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.out.write('Hello, ' + Login.email())
             
 class logout(webapp.RequestHandler):
     def get(self):
@@ -228,7 +247,7 @@ class filltable (webapp.RequestHandler):
           User = user.gql("WHERE Email='"+Service["Requester"]+"'").run().next()
           Skill = skill.gql("WHERE Name='"+Service["Skill"]+"'").run().next()
 
-          service(
+          ser = service(
             Title =  Service['Title'],
             Description = Service['Description'],
             Requester = User ,
@@ -236,8 +255,12 @@ class filltable (webapp.RequestHandler):
             Skill = Skill,
             Geoloc = Service['Geoloc'],
             StartDate = datetime.strptime(Service['StartDate'],'%Y-%M-%d'),
-            EndDate = datetime.strptime(Service['EndDate'],'%Y-%M-%d')
-            ).put()
+            EndDate = datetime.strptime(Service['EndDate'],'%Y-%M-%d'),
+          )
+          if Service.has_key("Responder"):
+            Responder = user.gql("WHERE Email='"+Service["Responder"]+"'").run().next()
+            ser.Responder = Responder
+          ser.put()
 
         # Service Applicants
         for SAppl in ServiceApplicants:
