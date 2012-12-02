@@ -278,10 +278,9 @@ class filltable (webapp.RequestHandler):
 
 class index (webapp.RequestHandler):
     def get(self):  
-        Path = os.path.split(__file__)[0].split("/")
-        Path = Path[0:(len(Path)-1)]
-        File = "/".join(Path) + '/static/index.html'
-        self.response.out.write(File)
+        # Path = os.path.split(__file__)[0].split("/")
+        # Path = Path[0:(len(Path)-1)]
+        File = os.path.join('static/index.html')
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.out.write(open(File, 'r').read()) 
 
