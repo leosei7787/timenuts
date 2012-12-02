@@ -172,6 +172,25 @@ class skills(webapp.RequestHandler):
     self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
     self.response.out.write( json.dumps(Cat) )
 
+class applyrequest(webapp.RequestHandler):
+    @login_required
+    def post(self):
+        try:
+            ServiceId = int(self.request.get('ServiceId'))
+        except ValueError:  # If int() not working
+            self.response.out.write("Error: POST parameter ServiceId must be an integer")
+        Login = users.get_current_user()
+        User = get_db_user(users.get_current_user, Login)
+        Service = service.get_by_id(ServiceId)
+        # Test see if there is already the mapping in serviceapplicants
+        ServiceApplicants = serviceapplicants(
+            Service = Service,
+            Applicant = User,
+        )
+        if serviceapplicants.gql("WHERE User=:1 AND Service=:2", User, Service).count() == 0:
+            ServiceApplicants.put()
+        self.response.out.write(json.dumps(ServiceApplicants.to_dict()))
+
 class login(webapp.RequestHandler):
     @login_required
     def get(self):
@@ -214,6 +233,9 @@ class filltable (webapp.RequestHandler):
         db.delete(entries)        
         query = skillstouser.all(keys_only=True)
         entries =query.fetch(1000)
+        db.delete(entries)
+        query = serviceapplicants.all(keys_only=True)
+        entries = query.fetch(1000)
         db.delete(entries)
 
         # Store category & Skills
@@ -274,7 +296,7 @@ class filltable (webapp.RequestHandler):
             ).put()
 
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
-        self.response.write("Done")
+        self.response.write(len(ServiceApplicants))
 
 class index (webapp.RequestHandler):
     def get(self):  

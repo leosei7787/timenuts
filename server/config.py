@@ -3,7 +3,8 @@ ConfigCategories = {
 		"Algorithm",
 		"Java",
 		"Web Application",
-		"C++"
+		"C++",
+        "Python",
 	],
 	"House Care":[
 		"Gardening",
@@ -103,6 +104,26 @@ ConfigServices = [
     "Geoloc" : True,
     "Requester" : "test@example.com",
     "Responder" : "alexandre.hajjar@gmail.com",
+},
+{
+    "Title" : "Do a web app for my business", 
+    "Description" : "Use Python and AppEngine for a simple web app",
+    "TimeNeeded" : 5,
+    "StartDate" : "2012-12-22",
+    "EndDate" : "2013-01-14",
+    "Skill" : "Web Application",
+    "Geoloc" : False,
+    "Requester" : "test@example.com",
+},
+{
+    "Title" : "Be a master at Python", 
+    "Description" : "Walk through Python Challenge up to level 23",
+    "TimeNeeded" : 10,
+    "StartDate" : "2012-12-12",
+    "EndDate" : "2013-02-04",
+    "Skill" : "Python",
+    "Geoloc" : False,
+    "Requester" : "sei7787@gmail.com",
 },
 ]
 

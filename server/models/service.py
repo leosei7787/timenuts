@@ -21,7 +21,6 @@ class service(db.Model):
   EndDate = db.DateTimeProperty(auto_now_add=True)
   Grade = db.RatingProperty()
   Feedback  = db.StringProperty()
-  Applicants = db.ReferenceProperty(user, collection_name="applied_services")
   Responder = db.ReferenceProperty(user, collection_name="responded_service")
   Attachments = db.StringListProperty()
   Comments = db.ListProperty(db.Key)
