@@ -12,7 +12,7 @@ class user(db.Model):
   TimeCredit = db.IntegerProperty(required = True)
   Involvement = db.IntegerProperty(required = True)
   Awards = db.ListProperty(db.Key)    # To the award model
-  Address = db.PostalAddressProperty()
+  Address = db.StringProperty()
   
   def get_awards(self):
     """Get the list of proper awards objects"""
