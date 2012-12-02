@@ -89,7 +89,7 @@ class serviceelement(webapp.RequestHandler):
     Service.put()
     self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
     self.response.out.write( json.dumps( Service.to_dict() ) )
-    
+
 
 
 
@@ -278,8 +278,11 @@ class filltable (webapp.RequestHandler):
 
 class index (webapp.RequestHandler):
     def get(self):  
-        path = os.path.join(os.path.split(__file__)[0], '..','static/index.html')
+        Path = os.path.split(__file__)[0].split("/")
+        Path = Path[0:(len(Path)-1)]
+        File = "/".join(Path) + '/static/index.html'
+        self.response.out.write(File)
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
-        self.response.out.write(open(path, 'r').read()) 
+        self.response.out.write(open(File, 'r').read()) 
 
 
