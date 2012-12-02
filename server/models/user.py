@@ -4,10 +4,10 @@ user object
 from google.appengine.ext import db
 
 class user(db.Model):
-  ForeName = db.StringProperty()
-  SureName = db.StringProperty()
+  FirstName = db.StringProperty()
+  LastName = db.StringProperty()
   Email = db.EmailProperty(required = True)
-  ImageURL = db.LinkProperty()
+  Image = db.LinkProperty()
   Headline = db.StringProperty()
   TimeCredit = db.IntegerProperty(required = True)
   Involvement = db.IntegerProperty(required = True)
@@ -27,7 +27,7 @@ class user(db.Model):
 
   def to_small_dict(self):
     """Returns a dict of minimum info about the user"""
-    CHOICES = ('ForeName', 'SureName', 'ImageURL', 'TimeCredit', 'Involvement',)
+    CHOICES = ('FirstName', 'LastName', 'Image', 'TimeCredit', 'Involvement',)
     return dict(
       {'Id': self.key().id()},
       **dict(
