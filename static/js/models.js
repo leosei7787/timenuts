@@ -14,6 +14,12 @@ window.Services = Backbone.Collection.extend({
 
 window.User = Backbone.Model.extend({
 	url : function() {
-		return '/data/user'
+		return '/data/user?Type=small'
+	}
+});
+
+window.UserFull = Backbone.Model.extend({
+	url : function() {
+		return '/data/user?Type=full'
 	}
 });

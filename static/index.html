@@ -17,33 +17,16 @@
 
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" /> 
 	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/DashBoardProfile.css" type="text/css" media="screen" />
+
+
+	<link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-	<script type="text/template" id="tpl-menu">
-	<header>
-	<nav><div id="logo"><h3>Logo</h3></div></nav>
-	</header>
-	</script>
-	<section id="content">
+	<script type="text/template" id="feed-skeleton">
 		<div id="left-col">
-			<div id="small-me" class="block">
-				<script type="text/template" id="tpl-small-me">
-				<img src="<%=Image %>?s=64" class="img-rounded"/>
-				<span><%= FirstName %> <%= SurName %>
-				</span>
-				<div id="scores">
-					<ul>
-						<li>
-							<label>Credit: </label><span><%=TimeCredit %> hours</span> 
-						</li>
-						<li>
-							<label>Involvment: </label><span><%=Involvement %></span>
-						</li>
-					</ul>
-				</div>
-				</script>
-			</div>
 		</div>
 		<div id="right-col">
 			<div id="create" class="block">
@@ -70,38 +53,104 @@
 							</li>
 						</tr>
 					</thead>
-					<script type="text/template" id="tpl-service">
-					<div class="sub-service service-avatar">
-					<img src="<%=Requester.User.Image %>?s=64" class="img-rounded" /> 
+				</table>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/template" id="tpl-menu">
+			<nav><div id="logo"><h3>Logo</h3></div></nav>
+	</script>
+
+	<script type="text/template" id="tpl-small-me">
+		<img src="<%=ImageURL %>?s=64" class="img-rounded"/>
+		<span><%= ForeName %> <%= SureName %>
+		</span>
+		<div id="scores">
+			<ul>
+				<li>
+					<label>Credit: </label><span><%=TimeCredit %> hours</span> 
+				</li>
+				<li>
+					<label>Involvment: </label><span><%=Involvement %></span>
+				</li>
+			</ul>
+		</div>
+	</script>
+
+
+	<script type="text/template" id="tpl-service">
+		<div class="sub-service service-avatar">
+			<img src="<%=Requester.User.Image %>?s=64" class="img-rounded" /> 
+		</div>
+		<div class="sub-service service-content">
+			<p class="service-title"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong>
+				<%=Category %> > <%=Skill %></p>
+				<small class="service-chapeau"><%= Title %></small>
+			</div>
+			<div class="sub-service service-info">
+				<% if(Icons.Friends == "True") {%>
+				<span>Friend</span>
+				<%}%>
+				<% if(Icons.FriendsOfFriends == "True") {%>
+				<span>Friend of a Friend</span>
+				<%}%>
+				<% if(Icons.Geoloc == "True") {%>
+				<span>Near you</span>
+				<%}%>
+				<% if(Icons.Time == "True") {%>
+				<span>Urgent</span>
+				<%}%>
+			</div>
+		</script>
+
+	<script type="text/template" id="tpl-main-user-data">
+			<div class="block profile-block">
+		
+				<div id="profilePic" class="pic img-rounded">
+					<img src="<%=ImageURL %>?s=128" />
+				</div>
+				
+				<div id="profileText">
+					<div id="profileFullName">
+						<h2 id="profileFirstName"><%= ForeName %></h2>
+						<h2 id="profileSurname"><%= SureName%></h2>
 					</div>
-					<div class="sub-service service-content">
-					<p class="service-title"><strong><%= Requester.User.FirstName %> <%= Requester.User.SurName %></strong>
-					<%=Category %> > <%=Skill %></p>
-					<small class="service-chapeau"><%= Title %></small>
+					<p id="profileHeadLine">Hackathons rock !</p>
+				</div>
+				
+				<div id="profileScoresContainer">
+					<div id="timeCreditDisplay" class="scoreDisplay">
+	<!-- 					<h5 id="timeCreditLabel">TIME:</h5> -->
+						<span><img src="img/clock.png" class="icon" /><span>
+						<span id="timeCredit"><%=TimeCredit %></span>
+	<!-- 					<p id="timeCreditExpression">YOUPIII!!</p> A voir si on le fait -->
 					</div>
-					<div class="sub-service service-info">
-					<% if(Icons.Friends == "True") {%>
-						<span>Friend</span>
-						<%}%>
-					<% if(Icons.FriendsOfFriends == "True") {%>
-						<span>Friend of a Friend</span>
-					<%}%>
-					<% if(Icons.Geoloc == "True") {%>
-						<span>Near you</span>
-					<%}%>
-					<% if(Icons.Time == "True") {%>
-						<span>Urgent</span>
-					<%}%>
-							</div>
-							</script>
-						</table>
+					<div id="engagementScoreDisplay" class="scoreDisplay">
+						<span><img src="img/engagement2hd.png" class="icon"/></span>
+						<span id="engagementScore"><%=Involvement %></span>
+						<span><h5 id="engagementScoreLabel">ENGAGEMENT</h5></span>
+	<!-- 					<p id="engagementScoreExpression">Great Activity DUDE !!</p>  A voir si on le fait -->
+					</div>
+					<div id="badgesBoardDisplay" class="scoreDisplay">
+						<ul id="badgesBoardList">
+							<li id="badgeContainer">
+								<img src="img/badge4.png" class="badgedisplay" />
+							</li>
+							<li id="badgeContainer">
+								<img src="img/badge5.png" class="badgedisplay" />
+							</li>
+							<li id="badgeContainer">
+								<img src="img/badge6.png" class="badgedisplay" />
+							</li>
+						</ul>
 					</div>
 				</div>
+			</div>
+	</script>
 
-			</section>
-
-			<script type="text/javascript" src="js/models.js"></script>
-			<script type="text/javascript" src="js/views.js"></script>
-			<script type="text/javascript" src="js/main.js"></script>
-		</body>
-		</html>
+		<script type="text/javascript" src="js/models.js"></script>
+		<script type="text/javascript" src="js/views.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+	</html>

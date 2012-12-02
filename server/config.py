@@ -9,12 +9,13 @@ Categories = {
 		"Gardening",
 		"Plumbing",
 		"Electricity",
-		"cleaning"
+		"cleaning",
+		"House Keeping"
 	],
 	"Personal Service":[
 		"Baby sitting",
 		"Parcel Fetching"
-	]
+	],
 	"International":[
 		"English",
 		"Spannish",
@@ -34,11 +35,11 @@ Profils = [
 		"TimeCredit":3,
 		"Headline" : "This is just me",
 		"Skills":[
-			Category["Computer Science"][2],
-			Category["International"][0],
-			Category["International"][2]
+			"Web Application",
+			"English",
+			"French"
 		]
-	}
+	},
 	{
 		"Email":"test@example.com",
 		"FirstName" : "Leo",
@@ -49,11 +50,26 @@ Profils = [
 		"TimeCredit":3,
 		"Headline" : "This is just me",
 		"Skills":[
-			Category["Computer Science"][2],
-			Category["International"][0],
-			Category["International"][2]
+			"Web Application",
+			"English",
+			"French",
+			"House Keeping"
 		]
 	}
+]
+
+Services = [
+{
+	"Title" : "Garden my plants",
+	"Description" : "I'll be out for a week, could you water my plants",
+	"TimeNeeded":4,
+	"StartDate":"2012-12-02",
+	"EndDate" : "2013-01-03",
+	"Skill" : "House Keeping",
+	"Geoloc" : True,
+	"Requester":"test@example.com"
+}
 
 
 ]
+
