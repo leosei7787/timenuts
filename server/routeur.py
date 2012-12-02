@@ -129,7 +129,7 @@ class userview(webapp.RequestHandler):
             d = u.to_small_dict()
         else:
             d = u.to_big_dict()
-        self.response.out.write(d)
+        self.response.out.write(json.dumps(d))
 
 class myapplying(webapp.RequestHandler):
   @login_required

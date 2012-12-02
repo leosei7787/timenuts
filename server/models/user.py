@@ -13,6 +13,7 @@ class user(db.Model):
   Involvement = db.IntegerProperty(required = True)
   Awards = db.ListProperty(db.Key)    # To the award model
   Address = db.StringProperty()
+  Friends = db.ListProperty(db.Key)   # AHHH
   
   def get_awards(self):
     """Get the list of proper awards objects"""
