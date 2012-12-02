@@ -31,10 +31,10 @@ class service(db.Model):
 
   def to_dict(self):
       tempdict1 = {
-        'Id' : str(self.key()),
-        'Title' : self.Title,
-        'Description' : self.Description,
-        'Requester' : str(self.Requester)
+        "Id" : str(self.key()),
+        "Title" : self.Title,
+        "Description" : self.Description,
+        "Requester" : str(self.Requester)
       }
       return tempdict1
 

@@ -31,9 +31,9 @@ class services(webapp.RequestHandler):
           for Service in LindedServices:
               Services.append(Service)
 
-          self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
+        self.response.out.write( json.dumps([p.to_dict() for p in Services]) )
+      else:
+          self.redirect(users.create_login_url(self.request.uri))
     else:
         path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
         self.response.out.write(open(path, 'r').read())
@@ -42,22 +42,22 @@ class login(webapp.RequestHandler):
     def get(self):
         Login = users.get_current_user()
         if Login:
-            q = user.gql('WHERE Email=\''+login.email()+'\'')
-            if q.count() == 0:
-                u= user(ForeName = "",
-                    SureName = "",
-                    Email = login.email(),
-                    ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
-                    Headline = 'Awesomness',
-                    TimeCredit = random.randint(0,10),
-                    Involvement = random.randint(0,1000),
-                    Awards = []
-                    )
-                u.put()
+          q = user.gql('WHERE Email=\''+login.email()+'\'')
+          if q.count() == 0:
+              u= user(ForeName = "",
+                  SureName = "",
+                  Email = login.email(),
+                  ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
+                  Headline = 'Awesomness',
+                  TimeCredit = random.randint(0,10),
+                  Involvement = random.randint(0,1000),
+                  Awards = []
+                  )
+              u.put()
             
             
-            self.response.headers['Content-Type'] = 'text/plain'
-            self.response.out.write('Hello, ' + Login.email())
+          self.response.headers['Content-Type'] = 'text/plain'
+          self.response.out.write('Hello, ' + Login.email())
         else:
             self.redirect(users.create_login_url(self.request.uri))
             
