@@ -9,6 +9,18 @@ window.MenuView = Backbone.View.extend({
 	}
 });
 
+window.FeedSkeletonView = Backbone.View.extend({
+	tagName : 'section',
+	id : 'content',
+	initialize : function() {
+	},
+	template : _.template($('#tpl-menu').html()),
+	render : function(eventName) {
+		$(this.el).html(this.template());
+		return this;
+	}
+});
+
 window.LoadingView = Backbone.View.extend({
 	className : 'loading',
 	render : function(eventName) {
@@ -41,12 +53,12 @@ window.ServicesView = Backbone.View.extend({
 	render : function(eventName) {
 		$(this.el).empty();
 		if (this.collection.length) {
-			_.each(this.collection.models,function(service) {
-				var view = new ServiceView({
+			_.each(this.collection.models,function(service,index) {
+				console.log('no'+index);
+				$(this.el).append('<tr><td class="service" id="service-'+index+'"></td></tr>');
+				$(this.el).find('#service-'+index).append(new ServiceView({
 					model : service
-				});
-				$(this.el).append('<tr><td class="service"></td></tr>');
-				$(this.el).find('.service').append(view.render().el);
+				}).render().el);
 			},this);
 		} else {
 			$(this.el).html('<tr><td class="service"></td></tr>');
@@ -61,11 +73,31 @@ window.UserSmallView = Backbone.View.extend({
 	id : 'small-me',
 	className : 'block',
 	template : _.template($('#tpl-small-me').html()),
+	initialize : function() {
+		this.model.on('change',this.render,this);
+	},
 	render : function(eventName) {
-		if (this.model) {
+		if (this.model.get('Id')) {
 			$(this.el).html(this.template(this.model.toJSON()));
 		} else {
-			$(this.el).html(new LoadingView.render().el);
+			$(this.el).html(new LoadingView({}).render().el);
+		}
+		return this;
+	}
+});
+
+window.UserFullView = Backbone.View.extend({
+	id : 'tpl-main-user-data',
+	className : 'section',
+	template : _.template($('#tpl-main-user-data').html()),
+	initialize : function() {
+		this.model.on('change',this.render,this);
+	},
+	render : function(eventName) {
+		if (this.model.get('Id')) {
+			$(this.el).html(this.template(this.model.toJSON()));
+		} else {
+			$(this.el).html(new LoadingView({}).render().el);
 		}
 		return this;
 	}
