@@ -47,4 +47,7 @@ class user(db.Model):
     d['Address'] = self.Address
     from server.models.award import award
     d['Awards'] = [award.get_by_id(x.id()).Name for x in self.Awards]
+    d['Friends'] = []
+    for frk in self.Friends:
+      d['Friends'].append(user.get_by_id(frk.id()).to_small_dict())
     return d

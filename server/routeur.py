@@ -129,6 +129,11 @@ class userview(webapp.RequestHandler):
             d = u.to_small_dict()
         else:
             d = u.to_big_dict()
+        Login = users.get_current_user()
+        if u.key() in Login.Friends:
+            d['AreFriends'] = "True"
+        else:
+            d['AreFriends'] = "False"
         self.response.out.write(json.dumps(d))
 
 class myapplying(webapp.RequestHandler):
