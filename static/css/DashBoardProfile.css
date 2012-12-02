@@ -150,3 +150,30 @@ h5.container-title {
 .block {
 	background: rgba(78, 78, 78, 0.05);
 }
+
+/* MAKE REQUEST */
+
+.geoloc-title {
+	margin: 0px;	
+}
+
+.form-horizontal textarea {
+	width: 400px;	
+}
+
+.request-table-date {
+	padding: 20px;
+}
+
+.request-table-date a {
+	margin: auto 10px auto 10px;
+}
+
+.request-table-date td,
+.request-table-date th,
+.request-table-date thead,
+.request-table-date tbody {
+	padding: 4px;
+}
+
+
