@@ -60,6 +60,7 @@ class userview(webapp.RequestHandler):
     """View rendering the user jsons"""
     @login_required
     def get(self):
+        self.response.out.write(self.request.url)
         Login = users.get_current_user()
         u = get_db_user(Login)
         # GET parameter
@@ -77,8 +78,8 @@ class login(webapp.RequestHandler):
         if Login:
           q = user.gql('WHERE Email=\''+login.email()+'\'')
           if q.count() == 0:
-              u= user(ForeName = "",
-                  SureName = "",
+              u= user(FirstName = "",
+                  LastName = "",
                   Email = login.email(),
                   ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
                   Headline = 'Awesomness',
@@ -121,8 +122,8 @@ class filltable (webapp.RequestHandler):
         db.delete(entries)
 
         # User
-        u= user(ForeName = "Jean",
-                    SureName = "Test",
+        u= user(FirstName = "Jean",
+                    LastName = "Test",
                     Email = "test@gmail.com",
                     ImageURL = 'http://google.fr',
                     Headline = 'Awesomness',

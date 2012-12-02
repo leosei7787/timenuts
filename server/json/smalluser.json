@@ -1,7 +1,7 @@
 {
     "Id": 10,
-    "ForeName": "Augustin", 
-    "SureName": "Riedinger", 
+    "FirstName": "Augustin", 
+    "LastName": "Riedinger", 
     "ImageURL": "http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64", 
     "TimeCredit": 3,
     "Involvement": 165,
