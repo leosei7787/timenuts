@@ -27,15 +27,14 @@ class service(db.Model):
   #Category = 
 
   def get_category(self):
-    from server.models.skill import skill
     return self.Skill.Category.get()
 
   def to_dict(self):
       tempdict1 = {
-        'Id' : self.key(),
-        'Title' : getattr(self,Title),
-        'Description' : getattr(self,Description),
-        'Requester' : getattr(self,Requester)
+        'Id' : str(self.key()),
+        'Title' : self.Title,
+        'Description' : self.Description,
+        'Requester' : str(self.Requester)
       }
       return tempdict1
 
