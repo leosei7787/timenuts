@@ -6,6 +6,7 @@ from server.models.skill import skill
 from server.models.category import category
 from google.appengine.ext import db
 import logging
+import datetime
 
 # Data Model
 class service(db.Model):
@@ -37,7 +38,7 @@ class service(db.Model):
         "Id": self.key().id(),
         "Title": self.Title,
         "Description": self.Description,
-        #"Category" : self.Skill.Category.Name,
+        "Category" : self.Skill.Category.Name,
         "Skill" : self.Skill.Name,
         "StartDate" : self.StartDate.strftime("%Y-%m-%d %H:%M:%S"),
         "EndDate" : self.EndDate.strftime("%Y-%m-%d %H:%M:%S"),
@@ -51,7 +52,14 @@ class service(db.Model):
         "Feedback":self.Feedback,
         "CreatedTime":self.CreatedTime.strftime("%Y-%m-%d %H:%M:%S"),
         "ModifiedTime" :self.ModifiedTime.strftime("%Y-%m-%d %H:%M:%S"),
-        "Address" : self.Requester.Address
+        "Address" : self.Requester.Address,
+        "Icons":{
+          "Geoloc": "True" if self.Requester.Address else "False" ,
+          "Friends" :  "True",
+          "Time": "True" if (self.EndDate - self.StartDate) < datetime.timedelta(days=7) else "False",
+          "FriendsofFriends":"False"
+
+        }
       }
       return tempdict1
 
