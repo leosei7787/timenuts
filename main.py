@@ -7,6 +7,7 @@ from server.routeur import *
 app = webapp.WSGIApplication([
                                ('/', index), 
                                ('/data/services', services), 
+                               ('/data/user', userview),
                                ('/login', login),
                                ('/logout', logout),
                                ('/filltable',filltable)
