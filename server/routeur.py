@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from google.appengine.ext import webapp
 from google.appengine.api import users
 from server.models.user import user
