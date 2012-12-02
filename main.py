@@ -16,6 +16,7 @@ app = webapp.WSGIApplication([
                                ('/data/applying', myapplying),
                                ('/data/requests', myrequests),
                                ('/data/doneservices', mydoneservices),
+                               ('/data/doneservices/*', doneservices)
                                ('/data/apply', applyrequest),
                                ('/login', login),
                                ('/logout', logout),

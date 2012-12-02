@@ -165,7 +165,18 @@ class mydoneservices(webapp.RequestHandler):
         u = get_db_user(self.request, Login)
         self.response.out.write(
             json.dumps([s.to_dict() for s in service.gql("WHERE Responder=:1", u)]))
+
+class doneservices(webapp.RequestHandler):
+    @login_required
+    def get(self):
+        Path = self.request.path.split("/")
+        Id = Path[ (len(Path)-1) ]
+        self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+        u = user.get_by_id(int(Id))
+        self.response.out.write(
+            json.dumps([s.to_dict() for s in service.gql("WHERE Responder=:1", u)]))
         
+
 class myrequests(webapp.RequestHandler):
     @login_required
     def get(self):
