@@ -11,10 +11,9 @@ window.MenuView = Backbone.View.extend({
 
 window.FeedSkeletonView = Backbone.View.extend({
 	tagName : 'section',
-	id : 'content',
 	initialize : function() {
 	},
-	template : _.template($('#tpl-menu').html()),
+	template : _.template($('#tpl-feed-skeleton').html()),
 	render : function(eventName) {
 		$(this.el).html(this.template());
 		return this;

@@ -8,17 +8,17 @@ var AppRouter = Backbone.Router.extend({
 		'!profile/:id' : 'profile'
 	},
 	initialize : function() {
+		this.menuView = new MenuView();
+		$('body').prepend(this.menuView.render().el);
 		Backbone.history.start();
 	},
 	show_404 : function() {
 	},
 	feed : function() {
-		$('body').empty();
-		this.menuView = new MenuView();
-		$('body').prepend(this.menuView.render().el);
+		$('#content').empty();
 
 		this.feedSkeletonView = new FeedSkeletonView();
-		$('body').append(this.feedSkeletonView.render().el);
+		$('#content').append(this.feedSkeletonView.render().el);
 
 		this.me = new User();
 		this.me.fetch({
@@ -61,9 +61,7 @@ var AppRouter = Backbone.Router.extend({
 		$('#feed-table').append(this.servicesView.render().el);
 	},
 	me : function() {
-		$('body').empty();
-		this.menuView = new MenuView();
-		$('body').prepend(this.menuView.render().el);
+		$('#content').empty();
 
 		this.meFull = new UserFull();
 		this.meFull.fetch({
@@ -83,7 +81,7 @@ var AppRouter = Backbone.Router.extend({
 			model : this.meFull
 		});
 
-		$('body').append(this.meFullView.render().el);
+		$('#content').append(this.meFullView.render().el);
 
 	},
 	profile : function(id) {

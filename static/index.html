@@ -24,8 +24,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<script type="text/template" id="tpl-menu">
+			<nav><div id="logo"><h3>Logo</h3></div></nav><div id="content"></div>
+	</script>
 
-	<script type="text/template" id="feed-skeleton">
+	<script type="text/template" id="tpl-feed-skeleton">
 		<div id="left-col">
 		</div>
 		<div id="right-col">
@@ -58,9 +61,6 @@
 		</div>
 	</script>
 
-	<script type="text/template" id="tpl-menu">
-			<nav><div id="logo"><h3>Logo</h3></div></nav>
-	</script>
 
 	<script type="text/template" id="tpl-small-me">
 		<img src="<%=ImageURL %>?s=64" class="img-rounded"/>
@@ -147,6 +147,199 @@
 					</div>
 				</div>
 			</div>
+		
+			<aside id="skillsContainer" class="block">
+				<h5 class="container-title">SKILLS</h5>
+				<div class="skill">
+					<div class="sub-skill skillBadge">
+						<img src="img/badge_gardening.png" />
+					</div>
+					<div class="sub-skill">
+						<div class="skill-level"><strong>Expert</strong></div>
+						<div class="skill-title"><strong>Jardinier</strong></div>
+					</div>
+					<div class="sub-skill skill-successStories">
+						<div>
+							<span>5</span>
+							<img src="img/succesStory.png" class="metric-icon"/>
+							<span>SuccessStories</span>
+						</div>
+						<div>
+							<span>14</span>
+							<img src="img/clock.png" class="metric-icon"/>
+						</div>
+					</div>
+				</div>
+				<div class="skill">
+					<div class="sub-skill skillBadge">
+						<img src="img/badge_chef.png" />
+					</div>
+					<div class="sub-skill">
+						<div class="skill-level"><strong>MASTER</strong></div>
+						<div class="skill-title"><strong>Chef</strong></div>
+					</div>
+					<div class="sub-skill skill-successStories">
+						<div>
+							<span>10</span>
+							<img src="img/succesStory.png" class="metric-icon"/>
+							<span>SuccessStories</span>
+						</div>
+						<div>
+							<span>42</span>
+							<img src="img/clock.png" class="metric-icon"/>
+						</div>
+					</div>
+				</div>
+				<div class="skill">
+					<div class="sub-skill skillBadge">
+						<img src="img/badge_bricoleur.png" />
+					</div>
+					<div class="sub-skill">
+						<div class="skill-level"><strong>Apprenti</strong></div>
+						<div class="skill-title"><strong>Bricoleur</strong></div>
+					</div>
+					<div class="sub-skill skill-successStories">
+					<div>
+							<span>3</span>
+							<img src="img/clock.png" class="metric-icon"/>
+						</div>
+					</div>
+				</div>
+			</aside>
+			
+			<aside id="histories-container">
+			<div id="servicesHistoryContainer" class="block history-container">
+			<h5 class="container-title">SERVICES</h5>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<td class="service">
+							<div class="service-block">
+								<div class="sub-service service-avatar">
+									<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded" /> 
+								</div>
+								<div class="sub-service service-content">
+									<p class="service-title"><strong>Adrian Gonzy</strong>
+										Manual > Building</p>
+										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
+									</div>
+									<div class="sub-service service-info-small">
+										<ul>
+											<li>
+												<img src="img/location.png"/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="service">
+							<div class="service-block">
+								<div class="sub-service service-avatar">
+									<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=128&d=identicon&r=PG" class="img-rounded" /> 
+								</div>
+								<div class="sub-service service-content">
+									<p class="service-title"><strong>Gus Gus</strong>
+										Consulting > technical</p>
+										<small class="service-chapeau">Hi, I need help thinking about how to make a web site.</small>
+									</div>
+									<div class="sub-service service-info-small">
+										<ul>
+											<li>
+												<img src="img/fof.png"/>
+											</li>
+											<li>
+												<img src="img/alarm.png"/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="service">
+								<div class="service-block">
+									<img src="" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="service">
+								<div class="service-block">
+									<img src="" />
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+					
+			<div id="requestHistoryContainer" class="block history-container">
+			<h5 class="container-title">REQUESTS</h5>
+				<table class="table table-striped">
+				<tbody>
+					<tr>
+						<td class="service">
+							<div class="service-block">
+								<div class="sub-service service-avatar">
+									<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded" /> 
+								</div>
+								<div class="sub-service service-content">
+									<p class="service-title"><strong>Adrian Gonzy</strong>
+										Manual > Building</p>
+										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
+									</div>
+									<div class="sub-service service-info-small">
+										<ul>
+											<li>
+												<img src="img/location.png"/>
+											</li>
+											<li>
+												<img src="img/alarm.png"/>
+											</li>
+											<li>
+												<img src="img/friend.png"/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+						<td class="service">
+							<div class="service-block">
+								<div class="sub-service service-avatar">
+									<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded" /> 
+								</div>
+								<div class="sub-service service-content">
+									<p class="service-title"><strong>Adrian Gonzy</strong>
+										Manual > Building</p>
+										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="service">
+								<div class="service-block">
+									<img src="" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="service">
+								<div class="service-block">
+									<img src="" />
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>		
+			</div>
+		</aside>
+
+
 	</script>
 
 		<script type="text/javascript" src="js/models.js"></script>
