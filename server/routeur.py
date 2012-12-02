@@ -172,6 +172,38 @@ class skills(webapp.RequestHandler):
     self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
     self.response.out.write( json.dumps(Cat) )
 
+class commentelement(webapp.RequestHandler):
+  def post(self):
+    Path = self.request.path.split("/")
+    Id = Path[ (len(Path)-1) ]
+    Login = users.get_current_user()
+    User = get_db_user(self.request,Login)
+    
+    #Store comment
+    c = comment(Comment = self.request.get("Comment"),
+      Owner = User
+      )
+    c.put()
+
+    #Append comment to Service
+    Service = service.get_by_id(int(Id))
+    Service.Comments.append(c)
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    self.response.out.write( json.dumps(Service) )
+
+
+
+class comments(webapp.RequestHandler):
+  def get(self):
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    Path = self.request.path.split("/")
+    Id = Path[ (len(Path)-1) ]
+    Service = service.get_by_id(int(Id))
+    Comments = Service.Comments
+    self.response.headers['Content-Type'] = 'application/json; charset=UTF-8'
+    self.response.out.write( json.dumps([c.to_dict() for c in Comments]) )
+
+
 class login(webapp.RequestHandler):
     @login_required
     def get(self):
