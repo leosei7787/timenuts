@@ -23,3 +23,9 @@ window.MeFull = Backbone.Model.extend({
 		return '/data/me?Type=full'
 	}
 });
+
+window.UserFull = Backbone.Model.extend({
+	url : function() {
+		return '/data/user?Id='+this.get('id')+'&Type=full'
+	}
+});

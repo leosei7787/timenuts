@@ -77,15 +77,37 @@ var AppRouter = Backbone.Router.extend({
 			}
 		});
 
-		this.meFullView = new MeFullView({
+		this.meFullView = new UserFullView({
 			model : this.meFull
 		});
 
 		$('#content').append(this.meFullView.render().el);
 
 	},
-	profile : function(id) {
+	profile : function(_id) {
+		$('#content').empty();
 
+		this.userFull = new UserFull({
+			id : _id
+		});
+		this.userFull.fetch({
+			success : function(collection, response) {
+				console
+				.log('Success in loading ' + collection + ' at '
+					+ collection.url + ' with ' + response.length
+					+ ' elements');
+			},
+			error : function(collection, response) {
+				console.log('Error in loading : ' + collection.name + ' at '
+					+ collection.url + ' with response ' + response);
+			}
+		});
+
+		this.userFullView = new UserFullView({
+			model : this.userFull
+		});
+
+		$('#content').append(this.userFullView.render().el);
 	}
 });
 
