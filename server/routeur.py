@@ -13,6 +13,23 @@ import logging
 import json
 from google.appengine.ext import db
 
+# Wrapper(s) and utilities
+
+def login_required(fn):
+    """Decorator so that fn (which is a class function like get) is sent to a create login page if user is not logged"""
+    def wrapped(obj):
+        Login = users.get_current_user()
+        if Login:
+            return fn(obj)
+        else:
+            obj.redirect(users.create_login_url(obj.request.uri))
+    return wrapped
+
+def get_db_user(request):
+    """Gets the user as in the db model from the user from request usermail"""
+    return user.gql("WHERE Email='%s'" % request.get("usermail")).run(limit=1).next()
+
+# Views
 
 class services(webapp.RequestHandler):
   def get(self):
@@ -38,6 +55,20 @@ class services(webapp.RequestHandler):
     else:
       path = os.path.join(os.path.split(__file__)[0], 'json/service.json')
       self.response.out.write(open(path, 'r').read())
+
+class userview(webapp.RequestHandler):
+    """View rendering the user jsons"""
+    @login_required
+    def get(self):
+        u = get_db_user(self.request)
+        # GET parameter
+        t = self.request.get('Type')
+        if t == "small":
+            self.response.out.write(json.dumps(u.to_small_dict()))
+        if t == "full":
+            self.response.out.write(json.dumps(u.to_big_dict()))
+        else:
+            self.reqponse.out.write("Error: Type GET parameter is taking values in ['small', 'big']")
         
 class login(webapp.RequestHandler):
     def get(self):
@@ -137,3 +168,5 @@ class index (webapp.RequestHandler):
         path = os.path.join(os.path.split(__file__)[0], '..','static/index.html')
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.out.write(open(path, 'r').read()) 
+
+
