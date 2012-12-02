@@ -6,13 +6,13 @@ from server.models.skillstouser import skillstouser
 from server.models.service import service
 from server.models.category import category
 from google.appengine.ext.webapp.util import run_wsgi_app
-import datetime
+from datetime import *
 import random
 import os
 import logging
 import json
 from google.appengine.ext import db
-import config
+from server.config import *
 
 # Wrappers and utilities
 
@@ -30,8 +30,7 @@ class services(webapp.RequestHandler):
       Login = users.get_current_user()
       if Login:
         # get all skills of that user
-        #Email = Login.email()
-        Email = self.request.get("usermail") 
+        Email = Login.email()
         User = user.gql('WHERE Email=\''+Email+'\'').run(limit=1).next()
         Skills = User.get_skills()
         Services = []
@@ -121,45 +120,47 @@ class filltable (webapp.RequestHandler):
         entries =query.fetch(1000)
         db.delete(entries)
 
-        # Store category
+        # Store category & Skills
         for Category in Categories:
           c = category(Name=Category)
           c.put()
-            for Skill in Category[c]:
-              s = skill(Name=Skills,Category=c)
+          for Skill in Categories[Category]:
+            skill(Name=Skill,Category=c).put()
 
-        # Define profiles
+        # Define profiles + link to Skills
         for User in Profils:
-          u= user(FirstName = User.FirstName,
-            LastName = User.LastName,
-            Email = User.Email,
-            Image = User.Image,
-            Headline = User.Headline,
-            TimeCredit = User.TimeCredit,
-            Involvement = User.Involvement,
-            Address = User.Address,
+          u =  user(FirstName = User['FirstName'],
+            LastName = User['LastName'],
+            Email = User['Email'],
+            Image = User['Image'],
+            Headline = User['Headline'],
+            TimeCredit = User['TimeCredit'],
+            Involvement = User['Involvement'],
+            Address = User['Address'],
             Awards = []
-          )
+            )
           u.put()       
 
-          for Skill in User[u]["Skills"]:
-            s = skill.gql("Where Name="+Skill).run().next() 
+          for Skill in User["Skills"]:
+            s = skill.gql("WHERE Name='"+Skill+"'").run().next() 
             skillstouser(Skill=s,User=u).put()  
 
-
-        
         #Service
-        for x in range(10):
-            service(
-                Title =  "Service request, fake Title"+str(x),
-                Description = "This is the comment of my Request "+ str(x),
-                Requester =  u,
-                TimeNeeded = x,
-                Skill = s,
-                Geoloc = True,
-                StartDate = datetime.datetime.now(),
-                EndDate = datetime.datetime.now()
-                ).put()
+        for Service in Services:
+          ## all FK needed
+          User = user.gql("WHERE Email='"+Service["Requester"]+"'").run().next()
+          Skill = skill.gql("WHERE Name='"+Service["Skill"]+"'").run().next()
+
+          service(
+            Title =  Service['Title'],
+            Description = Service['Description'],
+            Requester = User ,
+            TimeNeeded = Service['TimeNeeded'],
+            Skill = Skill,
+            Geoloc = Service['Geoloc'],
+            StartDate = datetime.strptime(Service['StartDate'],'%Y-%M-%d'),
+            EndDate = datetime.strptime(Service['EndDate'],'%Y-%M-%d')
+            ).put()
 
         self.response.headers['Content-Type'] = 'text/html; charset=UTF-8'
         self.response.write("Done")
