@@ -12,6 +12,7 @@ import os
 import logging
 import json
 from google.appengine.ext import db
+import config
 
 # Wrappers and utilities
 
@@ -142,39 +143,38 @@ class filltable (webapp.RequestHandler):
         entries =query.fetch(1000)
         db.delete(entries)
 
-        # User
-        u= user(FirstName = "Jean",
-                    LastName = "Test",
-                    Email = "test@gmail.com",
-                    Image = 'http://google.fr',
-                    Headline = 'Awesomness',
-                    TimeCredit = random.randint(0,10),
-                    Involvement = random.randint(0,1000),
-                    Awards = []
-        )
-        u.put()
-                
-        #Category
-        for x in range(10):
-            category(Name = chr(ord('a') + 2*x)).put()
-        
-        # Category to skills
-        for x in range(10):
-            cts = category.all().run().next()
-            for x in range(10):
-                S = skill(Name = chr(ord('a') +1 +x), Category = cts)
-                S.put()
-        
-        # Skills
-        ss = skill.gql("LIMIT 3").run()
-        for s in ss:
-            skillstouser(User=u, Skill=s).put()
+        # Store category
+        for Category in Categories:
+          c = category(Name=Category)
+          c.put()
+            for Skill in Category[c]:
+              s = skill(Name=Skills,Category=c)
+
+        # Define profiles
+        for User in Profils:
+          u= user(FirstName = User.FirstName,
+            LastName = User.LastName,
+            Email = User.Email,
+            Image = User.Image,
+            Headline = User.Headline,
+            TimeCredit = User.TimeCredit,
+            Involvement = User.Involvement,
+            Address = User.Address,
+            Awards = []
+          )
+          u.put()       
+
+          for Skill in User[u]["Skills"]:
+            s = skill.gql("Where Name="+Skill).run().next() 
+            skillstouser(Skill=s,User=u).put()  
+
+
         
         #Service
-        for x in range(20):
+        for x in range(10):
             service(
-                Title =  "TItTRE"+str(x),
-                Description = "SDMKSDF "+ str(x),
+                Title =  "Service request, fake Title"+str(x),
+                Description = "This is the comment of my Request "+ str(x),
                 Requester =  u,
                 TimeNeeded = x,
                 Skill = s,
