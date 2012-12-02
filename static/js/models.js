@@ -12,6 +12,16 @@ window.Services = Backbone.Collection.extend({
 	url : '/data/services'
 });
 
+window.Doneservices = Backbone.Collection.extend({
+	model : Service,
+	url : '/data/doneservices'
+});
+
+window.Requests = Backbone.Collection.extend({
+	model : Service,
+	url : '/data/requests'
+});
+
 window.Me = Backbone.Model.extend({
 	url : function() {
 		return '/data/me?Type=small'
