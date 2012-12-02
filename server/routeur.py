@@ -25,9 +25,10 @@ def login_required(fn):
             obj.redirect(users.create_login_url(obj.request.uri))
     return wrapped
 
-def get_db_user(login):
+def get_db_user(request, login):
     """Gets the user as in the db model from the user from request usermail (when user logged in)."""
-    return user.gql("WHERE Email='%s'" % login.email()).run(limit=1).next()
+    if 'localhost' in request
+    return user.gql("WHERE Email='%s'" % e).run(limit=1).next()
 
 # Views
 
@@ -62,7 +63,7 @@ class userview(webapp.RequestHandler):
     def get(self):
         self.response.out.write(self.request.url)
         Login = users.get_current_user()
-        u = get_db_user(Login)
+        u = get_db_user(self.request, Login)
         # GET parameter
         t = self.request.get('Type')
         if t == "small":
@@ -81,7 +82,7 @@ class login(webapp.RequestHandler):
               u= user(FirstName = "",
                   LastName = "",
                   Email = Login.email(),
-                  ImageURL = 'http://nfs-tr.com/images/avatars/003.png',
+                  Image = 'http://nfs-tr.com/images/avatars/003.png',
                   Headline = 'Awesomness',
                   TimeCredit = random.randint(0,10),
                   Involvement = random.randint(0,1000),
@@ -122,7 +123,7 @@ class filltable (webapp.RequestHandler):
         u= user(FirstName = "Jean",
                     LastName = "Test",
                     Email = "test@gmail.com",
-                    ImageURL = 'http://google.fr',
+                    Image = 'http://google.fr',
                     Headline = 'Awesomness',
                     TimeCredit = random.randint(0,10),
                     Involvement = random.randint(0,1000),
