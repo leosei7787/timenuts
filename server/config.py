@@ -77,6 +77,22 @@ ConfigProfils = [
             "sei7787@gmail.com"
         ],
 	},
+	{
+		"Email":"augustin.riedinger@gmail.com",
+		"FirstName" : "Augustin",
+		"LastName" : "Riedinger",
+		"Address" : "21 rue servan, 75011 Paris",
+        "Image": "http://en.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e",
+		"Involvement":450,
+		"TimeCredit":24,
+        "Headline" : "I <3 Hackathons",
+		"Skills":[
+			"Web Application",
+			"French",
+			"House Keeping",
+			"English"
+		]
+	}
 ]
 
 ConfigServices = [
