@@ -13,63 +13,116 @@
 	</head>
 	<body>
 		
-		<section id="simpleProfileContainer" class="container">
+		<section id="simpleProfileContainer">
+			<div class="block profile-block">
 		
-			<div id="profilePic" class="pic img-rounded">
-				<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=128&d=identicon&r=PG" alt="This guy is awesome" />
-			</div>
-			
-			<div id="profileText">
-				<div id="profileFullName">
-					<h2 id="profileFirstName">Adrian</h2>
-					<h2 id="profileSurname">Gonzalez</h2>
+				<div id="profilePic" class="pic img-rounded">
+					<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=128&d=identicon&r=PG" alt="This guy is awesome" />
 				</div>
-				<p id="profileHeadLine">I'm Awesome !!! And I love MySelf</p>
-			</div>
-			
-			<div id="profileScoresContainer">
-				<div id="timeCreditDisplay" class="scoreDisplay">
-<!-- 					<h5 id="timeCreditLabel">TIME:</h5> -->
-					<span><img src="img/clock.png" class="icon" /><span>
-					<span id="timeCredit"> + 42 H 35 min</span>
-<!-- 					<p id="timeCreditExpression">YOUPIII!!</p> A voir si on le fait -->
+				
+				<div id="profileText">
+					<div id="profileFullName">
+						<h2 id="profileFirstName">Adrian</h2>
+						<h2 id="profileSurname">Gonzalez</h2>
+					</div>
+					<p id="profileHeadLine">I'm Awesome !!! And I love MySelf</p>
 				</div>
-				<div id="engagementScoreDisplay" class="scoreDisplay">
-					<span><img src="img/arrow_up.png" class="arrow"/></span>
-					<span id="engagementScore">503</span>
-					<span><h5 id="engagementScoreLabel">ENGAGEMENT</h5></span>
-<!-- 					<p id="engagementScoreExpression">Great Activity DUDE !!</p>  A voir si on le fait -->
-				</div>
-				<div id="badgesBoardDisplay" class="scoreDisplay">
-					<ul id="badgesBoardList">
-						<li id="badgeContainer">
-							<img src="img/badge4.png" class="badgedisplay" />
-						</li>
-						<li id="badgeContainer">
-							<img src="img/badge5.png" class="badgedisplay" />
-						</li>
-						<li id="badgeContainer">
-							<img src="img/badge6.png" class="badgedisplay" />
-						</li>
-					</ul>
+				
+				<div id="profileScoresContainer">
+					<div id="timeCreditDisplay" class="scoreDisplay">
+	<!-- 					<h5 id="timeCreditLabel">TIME:</h5> -->
+						<span><img src="img/clock.png" class="icon" /><span>
+						<span id="timeCredit"> + 42 H 35 min</span>
+	<!-- 					<p id="timeCreditExpression">YOUPIII!!</p> A voir si on le fait -->
+					</div>
+					<div id="engagementScoreDisplay" class="scoreDisplay">
+						<span><img src="img/engagement2hd.png" class="icon"/></span>
+						<span id="engagementScore">503</span>
+						<span><h5 id="engagementScoreLabel">ENGAGEMENT</h5></span>
+	<!-- 					<p id="engagementScoreExpression">Great Activity DUDE !!</p>  A voir si on le fait -->
+					</div>
+					<div id="badgesBoardDisplay" class="scoreDisplay">
+						<ul id="badgesBoardList">
+							<li id="badgeContainer">
+								<img src="img/badge4.png" class="badgedisplay" />
+							</li>
+							<li id="badgeContainer">
+								<img src="img/badge5.png" class="badgedisplay" />
+							</li>
+							<li id="badgeContainer">
+								<img src="img/badge6.png" class="badgedisplay" />
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>
 		
 		<section id="activityContainer">
 		
-			<aside id="skillsContainer" class="container">
-			<h5 class="container-title">SKILLS</h5>
-			<hr>
-			
-			<img src="img/badge6.png"  width="300px"/>
+			<aside id="skillsContainer" class="block">
+				<h5 class="container-title">SKILLS</h5>
+				<div class="skill">
+					<div class="sub-skill skillBadge">
+						<img src="img/badge_gardening.png" />
+					</div>
+					<div class="sub-skill">
+						<div class="skill-level"><strong>Expert</strong></div>
+						<div class="skill-title"><strong>Jardinier</strong></div>
+					</div>
+					<div class="sub-skill skill-successStories">
+						<div>
+							<span>5</span>
+							<img src="img/succesStory.png" class="metric-icon"/>
+							<span>SuccessStories</span>
+						</div>
+						<div>
+							<span>14</span>
+							<img src="img/clock.png" class="metric-icon"/>
+						</div>
+					</div>
+				</div>
+				<div class="skill">
+					<div class="sub-skill skillBadge">
+						<img src="img/badge_chef.png" />
+					</div>
+					<div class="sub-skill">
+						<div class="skill-level"><strong>MASTER</strong></div>
+						<div class="skill-title"><strong>Chef</strong></div>
+					</div>
+					<div class="sub-skill skill-successStories">
+						<div>
+							<span>10</span>
+							<img src="img/succesStory.png" class="metric-icon"/>
+							<span>SuccessStories</span>
+						</div>
+						<div>
+							<span>42</span>
+							<img src="img/clock.png" class="metric-icon"/>
+						</div>
+					</div>
+				</div>
+				<div class="skill">
+					<div class="sub-skill skillBadge">
+						<img src="img/badge_bricoleur.png" />
+					</div>
+					<div class="sub-skill">
+						<div class="skill-level"><strong>Apprenti</strong></div>
+						<div class="skill-title"><strong>Bricoleur</strong></div>
+					</div>
+					<div class="sub-skill skill-successStories">
+					<div>
+							<span>3</span>
+							<img src="img/clock.png" class="metric-icon"/>
+						</div>
+					</div>
+				</div>
 			</aside>
 			
 			<aside id="histories-container">
-			<section id="servicesHistoryContainer" class="container history-container">
+			<div id="servicesHistoryContainer" class="block history-container">
 			<h5 class="container-title">SERVICES</h5>
-			<hr>
-			<table>
+			<table class="table table-striped">
 				<tbody>
 					<tr>
 						<td class="service">
@@ -83,8 +136,11 @@
 										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
 									</div>
 									<div class="sub-service service-info-small">
-										<span>1</span>
-										<img src="img/1354379904_NeedleLeftYellow2.png"/>
+										<ul>
+											<li>
+												<img src="img/location.png"/>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</td>
@@ -93,16 +149,22 @@
 							<td class="service">
 							<div class="service-block">
 								<div class="sub-service service-avatar">
-									<img src="http://www.gravatar.com/avatar/bc22b26eca68dab55ec4fe491495951e?s=64" class="img-rounded" /> 
+									<img src="http://www.gravatar.com/avatar/49fffbbc22abf4b72e85a2ca85f3717b?s=128&d=identicon&r=PG" class="img-rounded" /> 
 								</div>
 								<div class="sub-service service-content">
-									<p class="service-title"><strong>Adrian Gonzy</strong>
-										Manual > Building</p>
-										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
+									<p class="service-title"><strong>Gus Gus</strong>
+										Consulting > technical</p>
+										<small class="service-chapeau">Hi, I need help thinking about how to make a web site.</small>
 									</div>
 									<div class="sub-service service-info-small">
-										<span>1</span>
-										<img src="img/1354379904_NeedleLeftYellow2.png"/>
+										<ul>
+											<li>
+												<img src="img/fof.png"/>
+											</li>
+											<li>
+												<img src="img/alarm.png"/>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</td>
@@ -123,12 +185,11 @@
 						</tr>
 					</tbody>
 				</table>
-			</section>
+			</div>
 					
-			<section id="requestHistoryContainer" class="container history-container">
+			<div id="requestHistoryContainer" class="block history-container">
 			<h5 class="container-title">REQUESTS</h5>
-			<hr>
-				<table>
+				<table class="table table-striped">
 				<tbody>
 					<tr>
 						<td class="service">
@@ -142,8 +203,17 @@
 										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
 									</div>
 									<div class="sub-service service-info-small">
-										<span>1</span>
-										<img src="img/1354379904_NeedleLeftYellow2.png"/>
+										<ul>
+											<li>
+												<img src="img/location.png"/>
+											</li>
+											<li>
+												<img src="img/alarm.png"/>
+											</li>
+											<li>
+												<img src="img/friend.png"/>
+											</li>
+										</ul>
 									</div>
 								</div>
 							</td>
@@ -158,10 +228,6 @@
 									<p class="service-title"><strong>Adrian Gonzy</strong>
 										Manual > Building</p>
 										<small class="service-chapeau">Hey, I need someone to build a shelf in my place before my girlfriend comes back.</small>
-									</div>
-									<div class="sub-service service-info-small">
-										<span>1</span>
-										<img src="img/1354379904_NeedleLeftYellow2.png"/>
 									</div>
 								</div>
 							</td>
@@ -182,7 +248,7 @@
 						</tr>
 					</tbody>
 				</table>		
-			</section>
+			</div>
 		</aside>
 		</section>
 		

@@ -79,7 +79,7 @@ section {
 	display: inline-block;
 	padding: 5px;
 	height: inherit;
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 .service-avatar {
@@ -87,7 +87,7 @@ section {
 }
 
 .service-content {
-	width: 300px;
+	width: 295px;
 }
 
 .service-info {
