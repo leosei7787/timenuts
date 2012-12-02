@@ -66,6 +66,10 @@ section {
 	padding:5px;
 }
 
+.name {
+	font-family: 'Anaheim', sans-serif;
+
+}
 
 .service-block {
 	height: inherit;
@@ -87,9 +91,11 @@ section {
 }
 
 .service-content {
-	width: 295px;
+	width: 325px;
 }
 
 .service-info {
-	width: 160px;
+	width: 110px;
+	text-align: right;
+	float: right;
 }

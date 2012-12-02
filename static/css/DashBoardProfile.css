@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /* GENERAL TAGS */
 
@@ -177,3 +178,149 @@ h5.container-title {
 }
 
 
+=======
+
+/* GENERAL TAGS */
+
+body {
+/* 	background: rgb(255, 255, 128); */
+}
+
+
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
+
+/* simpleProfileContainer */
+
+#simpleProfileContainer {
+	width: 900px;
+}
+
+#simpleProfileContainer h2, h3 {
+	margin: 0px;
+}
+
+/* PROFILE TEXT DISPLAY */
+.profile-block {
+	clear: both;
+	height: 200px;
+}
+#profilePic, #profileText, #profileScoresContainer {
+	margin: 20px;
+	float: left;
+}
+
+#profilePic {
+	width: 128px;
+	box-shadow: 1px 1px 2px 1px gray;
+}
+
+#profileText p {
+	display: block;
+}
+
+
+#profileText p#profileHeadLine {
+	font-size: 16px;
+	color: gray;
+}
+
+/* SCORES DISPLAY */
+
+#profileScoresContainer div {
+	display: block;
+}
+
+#profileScoresContainer {
+	float: right;
+	background: rgba(128, 128, 128, 0.2);
+	border-radius: 5px;
+	padding: 12px;
+}
+
+.scoreDisplay h5, span, ul, li{
+	margin-top: 4px;
+	margin-left: 5px;
+}
+
+.scoreDisplay span {
+	font-size: 20px;	
+}
+
+#engagementScoreDisplay h5 {
+	display: inline;
+}
+
+.badgedisplay {
+	width: 40px;
+}
+
+.icon {
+	width: 30px;
+	margin: 2px;
+}
+
+.arrow {
+	height: 45px;
+}
+
+#badgesBoardDisplay  li{
+	display: inline-block;
+}
+
+/* servicesHistoryContainer */
+
+#skillsContainer {
+	width: 325px;
+	float: left;
+}
+
+#histories-container {
+	width: 545px;
+	float: right;
+}
+
+
+h5.container-title {
+	margin-left: 20px;
+	text-shadow: 1px 1px 3px gray;
+}
+
+
+
+.service-info ul {
+	margin: auto;
+}
+
+.service-info li {
+	width: 30px;
+	display: inline-block;	
+	margin: 2px;
+}
+
+.service-info img {
+	width:30px;
+}
+
+/* SKILLS */
+
+.sub-skill {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 2px;
+}
+
+.sub-skill img.metric-icon {
+	width: 22px;
+}
+
+.skillBadge {
+	width: 80px;
+}
+
+.block {
+	background: rgba(78, 78, 78, 0.05);
+}
+>>>>>>> gogogo
