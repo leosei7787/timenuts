@@ -11,8 +11,6 @@ var AppRouter = Backbone.Router.extend({
 		this.menuView = new MenuView();
 		$('body').prepend(this.menuView.render().el);
 		Backbone.history.start();
-
-
 	},
 	show_404 : function() {
 
